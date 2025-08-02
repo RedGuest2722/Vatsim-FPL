@@ -1,0 +1,57 @@
+{
+    "USERDATA": {
+        "CID": 1608599
+    },
+    "AIRPORTS": {
+        "EGCC": {
+            "23R": {
+                "SIDS": [
+                    "EKLAD 1R",
+                    "KUXEM 1R",
+                    "LISTO 2R",
+                    "POL 5R",
+                    "SANBA 1R",
+                    "SONEX 1R"
+                ]
+            },
+            "23L": {
+                "SIDS": [
+                    "EKLAD 1Y",
+                    "KUXEM 1Y",
+                    "LISTO 1Y",
+                    "POL 1Y",
+                    "SANBA 1Y",
+                    "SONEX 1Y"
+                ]
+            },
+            "05L": {
+                "SIDS": [
+                    "ASMIM 1S",
+                    "DESIG 1S",
+                    "LISTO 2S",
+                    "POL 4S"
+                ]
+            },
+            "05R": {
+                "SIDS": [
+                    "ASMIM 1Z",
+                    "DESIG 1Z",
+                    "LISTO 2Z",
+                    "POL 1Z"
+                ]
+            },
+            "REROUTES": {
+                "ASMIM": {
+                        "EKLAD": "ASMIM L975 WAL",
+                        "KUXEM": "ASMIM P16 NOKIN"
+                    },
+                "DESIG": "DESIG",
+                "LISTO": "LISTO L612 HON",
+                "EKLAD": "EKLAD Y53 WAL",
+                "KUXEM": "KUXEM P17 NOKIN",
+                "SANBA": "SANBA N859 HON",
+                "SONEX": "SONEX L975 DESIG"
+            }
+        }
+    }
+}
