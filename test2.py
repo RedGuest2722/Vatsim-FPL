@@ -1,17 +1,21 @@
-import json, os
+import os
 
-with open(os.path.join(os.getcwd(), 'SRD.json'), 'r') as file:
-    data: dict = json.load(file)
+lineTable = []
 
+with open(os.path.join(os.getcwd(), 'exits.txt'), 'r') as file:
+    for line in file:
+        lineTable.append(line)
+
+lineTableLength = len(lineTable) - 1
 i = 0
-while i != 1:
-    for ADEP in data.get('ADEP'):
-        for ADES in ADEP.get('ADES'):
-            for ADES_K, ADES_V in ADES.items():
-                if not len(ADES_K) == 4:
-                    print(ADES_K)
-            
 
-#for ADEP in data.get('ADEP'):
-    #for ADES in ADEP.get('ADES'):
-        #if len(ADES):
+while i < lineTableLength:
+    if lineTable[i].find('\n'):
+        lineTable[i] = lineTable[i].rstrip(',\n') + ''
+    
+    lineTable[i] = f'"{lineTable[i]}",\n'
+    i += 1
+
+with open(os.path.join(os.getcwd(), 'exits_comma.txt'), 'w') as file:
+    for line in lineTable:
+        file.write(line)
