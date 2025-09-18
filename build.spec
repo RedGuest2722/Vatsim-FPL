@@ -8,7 +8,8 @@ a = Analysis(
     datas=[
         ('data.json', '.'),
         ('UK Airports Database.json', '.'),
-        ('LISTO re_routes.json', '.')
+        ('LISTO re_routes.json', '.'),
+        ('Vatsim FPL Checker Icon.png', '.')
     ],
     hiddenimports=[],
     hookspath=[],
@@ -37,4 +38,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    icon='D:\My Stuff\Coding Projects\Vatsim-FPL\Vatsim FPL Checker Icon.ico'
 )

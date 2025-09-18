@@ -28,6 +28,7 @@ root: tk.Tk = tk.Tk()
 root.geometry("1500x700")
 root.title("Vatsim UK FPL Checker")
 root.configure(bg="#000000")
+root.wm_iconphoto(True, tk.PhotoImage(file=resource_path("Vatsim FPL Checker Icon.png")))
 
 
 #Vars

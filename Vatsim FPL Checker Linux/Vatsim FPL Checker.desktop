@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Vatsim FPL Checker
+Comment=Validate and inspect VATSIM flight plans
+Exec=/opt/vatsim-fpl-checker/VatsimFPLChecker
+Icon=/opt/vatsim-fpl-checker/icon.png
+Terminal=false
+Type=Application
+Categories=Utility;
+StartupNotify=true
