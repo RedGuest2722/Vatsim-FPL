@@ -8,6 +8,11 @@ import os
 import sys
 import pyperclip as clip
 
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
+
 
 '''
 pilot: {
@@ -38,7 +43,7 @@ pilotFrames: list = []
 
     #file vars
 #Loads Manchester Data
-with open(os.path.join(os.getcwd(), r"data.json"), "r") as file:
+with open(resource_path(r"data.json"), "r") as file:
     data: dict = json.load(file)
 
 if not data['USERDATA'].get('CID'):
@@ -55,12 +60,12 @@ if not data['USERDATA'].get('CID'):
         root.update()
     
     data["USERDATA"] = {"CID": int(cidVar.get())}
-    with open(os.path.join(os.getcwd(), r"data.json"), "w") as file:
+    with open(resource_path(r"data.json"), "w") as file:
         json.dump(data, file, indent=4)
     cidWindow.destroy()
 
 #Loads airport data
-with open(os.path.join(os.getcwd(), r"UK Airports Database.json"), "r") as file:
+with open(resource_path(r"UK Airports Database.json"), "r") as file:
     airportData: dict = json.load(file)
     airportData.keys
 
@@ -74,7 +79,7 @@ def vatsimDataFunc(vatsimDataJson: queue.Queue, airportPilots: queue.Queue, airp
 
     #Get vatsim pilots
     pilots = requests.get("https://data.vatsim.net/v3/vatsim-data.json").json()['pilots']
-    #with open(os.path.join(os.getcwd(), r"vatsimdata.json"), "r") as file:
+    #with open(resource_path(r"vatsimdata.json"), "r") as file:
     #    pilots = json.load(file)
     
     airportPilots: list = []
@@ -133,7 +138,7 @@ def vatsimDataFunc(vatsimDataJson: queue.Queue, airportPilots: queue.Queue, airp
                             #Wake category check
                             if runwayInUse.get().find("23") > -1:
                                 listo_sanba: bool|str = False
-                                with open(os.path.join(os.getcwd(), r"LISTO re_routes.json"), "r") as file:
+                                with open(resource_path(r"LISTO re_routes.json"), "r") as file:
                                     aircrafts: dict = json.load(file)
                                 
                                 while True:
@@ -168,7 +173,7 @@ def vatsimDataFunc(vatsimDataJson: queue.Queue, airportPilots: queue.Queue, airp
                                         lsWindow.destroy()
                                         aircrafts[pilot["flight_plan"]["aircraft_short"]] = lsStringVar.get()
                                         
-                                        with open(os.path.join(os.getcwd(), r"LISTO re_routes.json"), "w") as file: 
+                                        with open(resource_path(r"LISTO re_routes.json"), "w") as file: 
                                             json.dump(aircrafts, file, indent=4)
                                     
                     # if FPL departure invalid find correct departure with re-route
@@ -290,7 +295,7 @@ def selectRunway(runwayInUse: tk.StringVar, data: dict, userLocation: str, selec
 #end
 
 #Find User location
-#with open(os.path.join(os.getcwd(), r"vatsimdata.json"), "r") as file:
+#with open(resource_path(r"vatsimdata.json"), "r") as file:
 #    controllers = json.load(file)['controllers']
 
 location, userLocation = True, "EGCC"
