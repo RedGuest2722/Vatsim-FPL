@@ -3,7 +3,7 @@
 
 a = Analysis(
     ['main.py'],
-    pathex=[],
+    pathex=['D:/My Stuff/Coding Projects/Vatsim-FPL'],
     binaries=[],
     datas=[
         ('data.json', '.'),
@@ -23,9 +23,10 @@ pyz = PYZ(a.pure)
 exe = EXE(
     pyz,
     a.scripts,
-    [],
-    exclude_binaries=True,
-    name='main',
+    a.binaries,
+    a.zipfiles,
+    a.datas,
+    name='Vatsim FPL Checker',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -36,13 +37,4 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-)
-coll = COLLECT(
-    exe,
-    a.binaries,
-    a.datas,
-    strip=False,
-    upx=True,
-    upx_exclude=[],
-    name='main',
 )

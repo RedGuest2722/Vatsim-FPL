@@ -46,8 +46,14 @@ pilotFrames: list = []
 with open(resource_path(r"data.json"), "r") as file:
     data: dict = json.load(file)
 
+def endProgram():
+    root.destroy()
+    sys.exit()
+
 if not data['USERDATA'].get('CID'):
     
+    exitButton: tk.Button = tk.Button(master=root, command=lambda:endProgram(), text="End Program", width=15, font=(20), fg="#ffffff", bg="#808080", anchor="s")
+    exitButton.pack(pady=10)
     cidWindow: tk.Toplevel = tk.Toplevel(master=root, bg="#000000")
     cidWindow.attributes("-topmost", True)
     cidLabel: tk.Label = tk.Label(master=cidWindow, bg="#000000", fg="#ffffff", text="Enter your vatsim CID:")
@@ -63,6 +69,7 @@ if not data['USERDATA'].get('CID'):
     with open(resource_path(r"data.json"), "w") as file:
         json.dump(data, file, indent=4)
     cidWindow.destroy()
+    exitButton.destroy()
 
 #Loads airport data
 with open(resource_path(r"UK Airports Database.json"), "r") as file:
@@ -265,10 +272,6 @@ def vatsimDataFunc(vatsimDataJson: queue.Queue, airportPilots: queue.Queue, airp
 
     root.after(ms=1000, func=lambda:vatsimDataFunc(vatsimDataJson, airportPilots, airportData, reRouteFrame, updatedTimeLabel, userLocation, pilotFrames))
 
-
-def endProgram():
-    root.quit()
-    sys.exit()
 
 def timeUpdate(localTimeLabel: tk.Label):
     localTimeLabel.configure(text=f'Current: {time.strftime("%H:%M:%S", time.gmtime())}z')
