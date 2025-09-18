@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../../../Google Drive Offline/MSFS/VATSIM/Backups"
 		}
 	],
 	"settings": {}

@@ -41,9 +41,28 @@ pilotFrames: list = []
 with open(os.path.join(os.getcwd(), r"data.json"), "r") as file:
     data: dict = json.load(file)
 
+if not data['USERDATA'].get('CID'):
+    
+    cidWindow: tk.Toplevel = tk.Toplevel(master=root, bg="#000000")
+    cidWindow.attributes("-topmost", True)
+    cidLabel: tk.Label = tk.Label(master=cidWindow, bg="#000000", fg="#ffffff", text="Enter your vatsim CID:")
+    cidLabel.pack(pady=10)
+    cidVar: tk.StringVar = tk.StringVar(master=cidWindow)
+    cidEntry: tk.Entry = tk.Entry(master=cidWindow, bg="#808080", fg="#ffffff", textvariable=cidVar)
+    cidEntry.pack(pady=5)
+    
+    while not len(cidVar.get()) == 7:
+        root.update()
+    
+    data["USERDATA"] = {"CID": int(cidVar.get())}
+    with open(os.path.join(os.getcwd(), r"data.json"), "w") as file:
+        json.dump(data, file, indent=4)
+    cidWindow.destroy()
+
 #Loads airport data
 with open(os.path.join(os.getcwd(), r"UK Airports Database.json"), "r") as file:
     airportData: dict = json.load(file)
+    airportData.keys
 
 #Functions
 def vatsimDataFunc(vatsimDataJson: queue.Queue, airportPilots: queue.Queue, airportData: dict, reRouteFrame: tk.Frame, updatedTimeLabel: tk.Label, userLocation: str, pilotFrames: list):
@@ -83,7 +102,7 @@ def vatsimDataFunc(vatsimDataJson: queue.Queue, airportPilots: queue.Queue, airp
         if geodesic((airportData[userLocation]["Latt"], airportData[userLocation]["Long"]), (pilot['latitude'], pilot['longitude'])).nautical <= 2 and pilot["altitude"] <= 2000:
             if pilot["flight_plan"]:
                 #Checks runway has been chosen and the flight is departing from the user airport
-                if runwayInUse.get() != "None" and pilot["flight_plan"]["departure"] == userLocation:
+                if runwayInUse.get() != "None" and pilot["flight_plan"]["departure"] == userLocation and pilot["flight_plan"]["flight_rules"] == "I":
                     pilotRoute: str = pilot["flight_plan"]["route"]
                     # Remove FL and Coords e.g(F290N5132)
                     while True:
@@ -99,9 +118,10 @@ def vatsimDataFunc(vatsimDataJson: queue.Queue, airportPilots: queue.Queue, airp
                         pilotRoute =  pilotRoute[:pilotRoute.find(userLocation)] + pilotRoute[pilotRoute.find(" ", pilotRoute.find(userLocation)):]
                     
                     # Remove SID
-                    for sid in data["AIRPORTS"][userLocation]["ALLSIDS"]:
-                        if pilotRoute.find(sid) > -1:
-                            pilotRoute = f'{pilotRoute[:pilotRoute.find(sid)]} {pilotRoute[pilotRoute.find(" ", pilotRoute.find(sid)):]}'
+                    for _, rwy in data["AIRPORTS"][userLocation]["RUNWAYS"].items():
+                        for sid in rwy:
+                            if pilotRoute.find(sid) > -1:
+                                pilotRoute = f'{pilotRoute[:pilotRoute.find(sid)]} {pilotRoute[pilotRoute.find(" ", pilotRoute.find(sid)):]}'
                             
                     invalid = True
                     # See if FPL has a valid departure SID
@@ -120,12 +140,11 @@ def vatsimDataFunc(vatsimDataJson: queue.Queue, airportPilots: queue.Queue, airp
                                     listo_sanba = aircrafts.get(pilot["flight_plan"]["aircraft_short"], False)
                                     
                                     if listo_sanba:
-                                        if pilot["flight_plan"]["route"].find(listo_sanba) > -1:
-                                            airportPilots.append({"callsign": pilot["callsign"], "SID": sid, "Route": "As Filed", "colour": "#00ff00"})
-                                        else:
+                                        if pilot["flight_plan"]["route"].find(listo_sanba) > 0:
                                             for lsSID in data["AIRPORTS"][userLocation][runwayInUse.get()]:
                                                 if lsSID.find(listo_sanba) > -1:
-                                                    airportPilots.append({"callsign": pilot["callsign"], "Route": data["AIRPORTS"][userLocation]["REROUTES"][listo_sanba], "SID": lsSID, "colour": "#ffA500"})
+                                                    airportPilots.append({"callsign": pilot["callsign"], "type": "RR", "Route": data["AIRPORTS"][userLocation]["REROUTES"][listo_sanba], "SID": lsSID, "colour": "#ffA500"})
+                                        
                                         break
                                     else:
                                         lsStringVar: tk.StringVar = tk.StringVar(master=root, value="False")
@@ -152,7 +171,6 @@ def vatsimDataFunc(vatsimDataJson: queue.Queue, airportPilots: queue.Queue, airp
                                         with open(os.path.join(os.getcwd(), r"LISTO re_routes.json"), "w") as file: 
                                             json.dump(aircrafts, file, indent=4)
                                     
-                            airportPilots.append({"callsign": pilot["callsign"], "SID": sid, "Route": "As Filed", "colour": "#00ff00"})
                     # if FPL departure invalid find correct departure with re-route
                     if invalid:
                         filed = pilotRoute[:pilotRoute.find(" ")]
@@ -167,49 +185,74 @@ def vatsimDataFunc(vatsimDataJson: queue.Queue, airportPilots: queue.Queue, airp
                         
                         # Assign correct SID
                         for sid in data["AIRPORTS"][userLocation][runwayInUse.get()]["SIDS"]:
-                            if Reroute["Route"].find(sid[:sid.find(" ")]) > -1:
+                            if sid.find(Reroute["Route"].split()[0]) > -1:
                                 Reroute["SID"] = sid
                         
                         # Apply re-route to FPL
                         RerouteList = Reroute["Route"].split(" ")
                         if pilotRoute.find(RerouteList[2]) > -1:
-                            airportPilots.append({"callsign": pilot.get("callsign"), **Reroute, "colour": "#ffA500"})
+                            airportPilots.append({"callsign": pilot.get("callsign"), **Reroute, "type": "RR", "colour": "#ffA500"})
                         else:
                             # More complicated re-route required
                             if pilotRoute.find(RerouteList[1]) > -1:
-                                airportPilots.append({"callsign": pilot["callsign"], 
+                                airportPilots.append({"callsign": pilot["callsign"], "type": "RR", 
                                     "Route": f"{RerouteList[0]} {RerouteList[1]} {pilotRoute[pilotRoute.find(' ', pilotRoute.find(RerouteList[1])):pilotRoute.find(' ', pilotRoute.find(RerouteList[1])+7)]}", "SID": Reroute["SID"], "colour": "#ffA500"})
                             else:
-                                airportPilots.append({"callsign": pilot["callsign"], "SID": "N/A", "Route": "Needs SRD", "colour": "#ff0000"})
+                                airportPilots.append({"callsign": pilot["callsign"], "SRD": "Needs SRD", "colour": "#ff0000"})
+                        
             else:
-                airportPilots.append({"callsign": pilot["callsign"], "SID": "N/A", "Route": "No FPL", "colour": "#ff0000"})
+                airportPilots.append({"callsign": pilot["callsign"], "type": "FPL", "colour": "#ff0000"})
     for pilotReRoute in airportPilots:
         callsign = pilotReRoute["callsign"]
         buttoned = False
         for buttonedCallsign in pilotFrames:
             if buttonedCallsign["name"] == callsign:
                 buttoned = True
-                buttonedCallsign["label"].configure(fg=pilotReRoute["colour"])
-                buttonedCallsign["sid"].configure(text=pilotReRoute["SID"], command=lambda:clip.copy(pilotReRoute["Route"]))
-                buttonedCallsign["route"].configure(text=pilotReRoute["Route"] if pilotReRoute["Route"] == "Needs SRD" or pilotReRoute["Route"] == "As Filed" or pilotReRoute["Route"] == "No FPL" else "Re-Route", 
-                    command=lambda:clip.copy(f'{pilotReRoute["SID"].replace(" ", "")} departure. Runway {runwayInUse.get()}. Re-Route: {pilotReRoute["Route"]} Then as filed.'))
-                
-                
-                
+                buttonedCallsign["labelCall"].configure(fg=pilotReRoute["colour"])
+                if pilotReRoute["type"] == "RR":
+                    try:
+                        buttonedCallsign["labelMsg"].forget()
+                    except:
+                        pass
+                    buttonedCallsign["sid"].configure(text=pilotReRoute["SID"], command=lambda:clip.copy(pilotReRoute["Route"]))
+                    buttonedCallsign["route"].configure(text="Re-Route", command=lambda:clip.copy(f'{pilotReRoute["SID"].replace(" ", "")} departure. Runway {runwayInUse.get()}. Re-Route: {pilotReRoute["Route"]} Then as filed.'))
+                    buttonedCallsign["sid"].pack(side="left")
+                    buttonedCallsign["route"].pack(side="left")
+                else:
+                    try:
+                        buttonedCallsign["sid"].forget()
+                        buttonedCallsign["route"].forget()
+                    except:
+                        pass
+                    buttonedCallsign["labelMsg"].configure(text="No flight Plan" if pilotReRoute["type"] == "FPL" else "Needs SRD")
+                    buttonedCallsign["labelMsg"].pack(side="left")
+                break
+            
         if not buttoned:
+            
             pilotReRoute["name"] = callsign
             pilotReRoute["Runway"] = runwayInUse.get()
             pilotReRoute["frame"] = tk.Frame(reRouteFrame, bg="#000000")
-            pilotReRoute["frame"].pack(side="top", pady=5)
-            pilotReRoute["label"] = tk.Label(pilotReRoute["frame"], text=f"{callsign}:", font=(20), fg=pilotReRoute["colour"], bg="#000000")
-            pilotReRoute["label"].pack(side="left")
-            pilotReRoute["sid"] = tk.Button(pilotReRoute["frame"], text=pilotReRoute["SID"], command=lambda:clip.copy(pilotReRoute["Route"]), font=(20), fg="#ffffff", bg="#808080")
-            pilotReRoute["sid"].pack(side="left", padx=5)
-            pilotReRoute["route"] = tk.Button(pilotReRoute["frame"], text=pilotReRoute["Route"] if pilotReRoute["Route"] == "Needs SRD" or pilotReRoute["Route"] == "As Filed" or pilotReRoute["Route"] == "No FPL" else "Re-Route", 
-                command=lambda:clip.copy(f'{pilotReRoute["SID"].replace(" ", "")} departure. Runway {runwayInUse.get()}. Re-Route: {pilotReRoute["Route"]} Then as filed.'), 
-                font=(20), fg="#ffffff", bg="#808080")
+            pilotReRoute["labelCall"] = tk.Label(pilotReRoute["frame"], text=f"{callsign}:", font=(20), fg=pilotReRoute["colour"], bg="#000000")
             
-            pilotReRoute["route"].pack(side="left", padx=5)
+            pilotReRoute["frame"].pack(side="top", pady=5)
+            pilotReRoute["labelCall"].pack(side="left")
+            
+            pilotReRoute["sid"] = tk.Button(pilotReRoute["frame"], font=(20), fg="#ffffff", bg="#808080")
+            pilotReRoute["route"] = tk.Button(pilotReRoute["frame"], font=(20), fg="#ffffff", bg="#808080")
+            pilotReRoute["labelMsg"] = tk.Label(pilotReRoute["frame"], font=(20), fg="#ffffff", bg="#808080")
+            
+            if pilotReRoute["type"] == "RR":
+                pilotReRoute["sid"].configure(text=pilotReRoute["SID"], command=lambda:clip.copy(pilotReRoute["Route"]))
+                pilotReRoute["route"].configure(text="Re-Route", command=lambda:clip.copy(f'{pilotReRoute["SID"].replace(" ", "")} departure. Runway {runwayInUse.get()}. Re-Route: {pilotReRoute["Route"]} Then as filed.'))
+                
+                pilotReRoute["sid"].pack(side="left", padx=5)
+                pilotReRoute["route"].pack(side="left", padx=5)
+            else:
+                pilotReRoute["labelMsg"] = tk.Label(pilotReRoute["frame"], text="No flight Plan" if pilotReRoute["type"] == "FPL" else "VFR Traffic" if pilotReRoute["type"] == "VFR" else "As Filed" if pilotReRoute["type"] == "AF" else "Needs SRD", font=(20), fg=pilotReRoute["colour"], bg="#000000")
+                pilotReRoute["labelMsg"].pack(side="left")
+            
+            
             
             pilotFrames.append(pilotReRoute)
     
@@ -232,8 +275,8 @@ def selectRunway(runwayInUse: tk.StringVar, data: dict, userLocation: str, selec
     runwayWindow: tk.Toplevel = tk.Toplevel(master=root, bg="#000000", pady=40, padx=150)
     
     
-    runwayList: tk.Listbox = tk.Listbox(master=runwayWindow, fg="#ffffff", bg="#000000", justify="center", width=4, height=len(data["AIRPORTS"][userLocation]["RUNWAYS"]), font=("TkDefaultFont", 25))
-    for runway in data["AIRPORTS"][userLocation]["RUNWAYS"]:
+    runwayList: tk.Listbox = tk.Listbox(master=runwayWindow, fg="#ffffff", bg="#000000", justify="center", width=4, height=len(list(data["AIRPORTS"][userLocation]["RUNWAYS"].keys())), font=("TkDefaultFont", 25))
+    for runway in data["AIRPORTS"][userLocation]["RUNWAYS"].keys():
         runwayList.insert(tk.END, runway)
         
     runwayList.pack(anchor="center")
@@ -283,9 +326,11 @@ localTimeLabel.pack(side="right", padx=10)
 
 reRouteFrame: tk.Frame = tk.Frame(master=root, bg="#000000")
 reRouteFrame.pack(pady=5, anchor="center")
+root.attributes("-topmost", True)
 
 #Start Threads
 timeUpdate(localTimeLabel)
 vatsimDataFunc(vatsimDataJson, airportPilots, airportData, reRouteFrame, updatedTimeLabel, userLocation, pilotFrames)
 
+root.attributes("-topmost", False)
 root.mainloop()
