@@ -138,7 +138,7 @@ def vatsimDataFunc(vatsimDataJson: queue.Queue, airportPilots: queue.Queue, airp
                             
                     invalid = True
                     # See if FPL has a valid departure SID
-                    for sid in data["AIRPORTS"][userLocation][runwayInUse.get()]["SIDS"]:
+                    for sid in data["AIRPORTS"][userLocation]["RUNWAYS"][runwayInUse.get()]:
                         sid: str
                         #check to find a valid SID for given route
                         if pilotRoute.find(sid.split(" ")[0]) > -1:
@@ -153,8 +153,10 @@ def vatsimDataFunc(vatsimDataJson: queue.Queue, airportPilots: queue.Queue, airp
                                     listo_sanba = aircrafts.get(pilot["flight_plan"]["aircraft_short"], False)
                                     
                                     if listo_sanba:
-                                        if pilot["flight_plan"]["route"].find(listo_sanba) > 0:
-                                            for lsSID in data["AIRPORTS"][userLocation][runwayInUse.get()]:
+                                        if listo_sanba == "BOTH":
+                                            pass
+                                        elif pilot["flight_plan"]["route"].find(listo_sanba) > 0:
+                                            for lsSID in data["AIRPORTS"][userLocation]["RUNWAYS"][runwayInUse.get()]:
                                                 if lsSID.find(listo_sanba) > -1:
                                                     airportPilots.append({"callsign": pilot["callsign"], "type": "RR", "Route": data["AIRPORTS"][userLocation]["REROUTES"][listo_sanba], "SID": lsSID, "colour": "#ffA500"})
                                         
@@ -173,8 +175,12 @@ def vatsimDataFunc(vatsimDataJson: queue.Queue, airportPilots: queue.Queue, airp
                                         lsLabel2.pack(side="left", padx=5)
                                         sanbaButton: tk.Button = tk.Button(master=lsFrame, text="SANBA", command=lambda:lsStringVar.set("SANBA"))
                                         sanbaButton.pack(side="left", padx=5)
-                                        lsLabel3: tk.Label = tk.Label(master=lsFrame, text=f'departure.', fg="#ffffff", bg="#808080")
+                                        lsLabel3: tk.Label = tk.Label(master=lsFrame, text=f'departure or', fg="#ffffff", bg="#808080")
                                         lsLabel3.pack(side="left", padx=5)
+                                        bothButton: tk.Button = tk.Button(master=lsFrame, text="BOTH", command=lambda:lsStringVar.set("BOTH"))
+                                        bothButton.pack(side="left", padx=5)
+                                        lsLabel4: tk.Label = tk.Label(master=lsFrame, text=f'?', fg="#ffffff", bg="#808080")
+                                        lsLabel4.pack(side="left", padx=5)
 
                                         while lsStringVar.get() == "False":
                                             root.update()
