@@ -7,5 +7,9 @@
 			"path": "../../../Google Drive Offline/MSFS/VATSIM/Backups"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"cSpell.words": [
+			"websocketpp"
+		]
+	}
 }
