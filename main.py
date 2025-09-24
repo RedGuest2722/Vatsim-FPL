@@ -7,6 +7,7 @@ import time
 import os
 import sys
 import pyperclip as clip
+import Airports
 
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
@@ -98,7 +99,7 @@ def vatsimDataFunc(vatsimDataJson: queue.Queue, airportPilots: queue.Queue, airp
     for pilotFrame in pilotFrames:
         keep = False
         for pilot in pilots:
-            if geodesic((airportData[userLocation]["Latt"], airportData[userLocation]["Long"]), (pilot['latitude'], pilot['longitude'])).nautical <= 2 and pilot["altitude"] <= 2000:
+            if geodesic((userLocation["Latt"], airportData[userLocation]["Long"]), (pilot['latitude'], pilot['longitude'])).nautical <= 2 and pilot["altitude"] <= 2000:
                 if pilotFrame["name"] == pilot["callsign"]:
                     keep = True
                     break
@@ -312,6 +313,7 @@ while not location:
             location = True
     time.sleep(1)
 
+userLocation = Airports(userLocation)
 
 #Tkinter start buttons
 selectRunwayButton: tk.Button = tk.Button(master=root, width=20, font=(20), command=lambda:selectRunway(runwayInUse, data, userLocation, selectRunwayButton), text="Select runway", fg="#ffffff", bg="#808080")
