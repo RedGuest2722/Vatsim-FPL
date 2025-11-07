@@ -1,0 +1,3099 @@
+{
+    "AIRPORTS": {
+        "EGAA": {
+            "Elevation": 268,
+            "Long": -6.21583557,
+            "Latt": 54.65750122
+        },
+        "EGAB": {
+            "Elevation": 159,
+            "Long": -7.65194702,
+            "Latt": 54.39861298
+        },
+        "EGAC": {
+            "Elevation": 15,
+            "Long": -5.87251282,
+            "Latt": 54.61805725
+        },
+        "EGAD": {
+            "Elevation": 9,
+            "Long": -5.69195557,
+            "Latt": 54.58111191
+        },
+        "EGAE": {
+            "Elevation": 23,
+            "Long": -7.16194153,
+            "Latt": 55.04277802
+        },
+        "EGAG": {
+            "Elevation": 207,
+            "Long": -2.99417114,
+            "Latt": 51.79458618
+        },
+        "EGAI": {
+            "Elevation": 951,
+            "Long": -1.20883179,
+            "Latt": 54.23131943
+        },
+        "EGAJ": {
+            "Elevation": 306,
+            "Long": -1.41960144,
+            "Latt": 51.1367569
+        },
+        "EGAL": {
+            "Elevation": 93,
+            "Long": -6.3001709,
+            "Latt": 54.62076187
+        },
+        "EGAM": {
+            "Elevation": 253,
+            "Long": -6.59191895,
+            "Latt": 54.37036133
+        },
+        "EGAN": {
+            "Elevation": 577,
+            "Long": -1.46166992,
+            "Latt": 51.26431656
+        },
+        "EGAO": {
+            "Elevation": 469,
+            "Long": 1.20906067,
+            "Latt": 51.14497757
+        },
+        "EGAP": {
+            "Elevation": 594,
+            "Long": -2.58494568,
+            "Latt": 54.69855881
+        },
+        "EGAQ": {
+            "Elevation": 782,
+            "Long": -6.5856781,
+            "Latt": 54.30310059
+        },
+        "EGAS": {
+            "Elevation": 15,
+            "Long": -1.13392639,
+            "Latt": 53.61038589
+        },
+        "EGAU": {
+            "Elevation": 128,
+            "Long": -3.74638367,
+            "Latt": 56.32484055
+        },
+        "EGAV": {
+            "Elevation": 558,
+            "Long": -1.91036987,
+            "Latt": 51.43177795
+        },
+        "EGAW": {
+            "Elevation": 188,
+            "Long": -1.75161743,
+            "Latt": 52.70589447
+        },
+        "EGAX": {
+            "Elevation": 176,
+            "Long": -1.74563599,
+            "Latt": 52.71458435
+        },
+        "EGAZ": {
+            "Elevation": 286,
+            "Long": -2.93162537,
+            "Latt": 52.84262848
+        },
+        "EGBA": {
+            "Elevation": 15,
+            "Long": -6.58468628,
+            "Latt": 55.05786133
+        },
+        "EGBB": {
+            "Elevation": 339,
+            "Long": -1.74806213,
+            "Latt": 52.45388794
+        },
+        "EGBD": {
+            "Elevation": 175,
+            "Long": -1.61749268,
+            "Latt": 52.85972214
+        },
+        "EGBE": {
+            "Elevation": 267,
+            "Long": -1.47972107,
+            "Latt": 52.36972046
+        },
+        "EGBF": {
+            "Elevation": 273,
+            "Long": -0.44555664,
+            "Latt": 52.23250198
+        },
+        "EGBG": {
+            "Elevation": 469,
+            "Long": -1.03193665,
+            "Latt": 52.60777664
+        },
+        "EGBH": {
+            "Elevation": 214,
+            "Long": -2.21977234,
+            "Latt": 50.70924377
+        },
+        "EGBI": {
+            "Elevation": 126,
+            "Long": -1.85055542,
+            "Latt": 52.13790512
+        },
+        "EGBJ": {
+            "Elevation": 101,
+            "Long": -2.16722107,
+            "Latt": 51.89416504
+        },
+        "EGBK": {
+            "Elevation": 424,
+            "Long": -0.79222107,
+            "Latt": 52.30611038
+        },
+        "EGBL": {
+            "Elevation": 139,
+            "Long": -1.74989319,
+            "Latt": 52.14143372
+        },
+        "EGBM": {
+            "Elevation": 439,
+            "Long": -1.76472473,
+            "Latt": 52.81416702
+        },
+        "EGBN": {
+            "Elevation": 138,
+            "Long": -1.0791626,
+            "Latt": 52.91999817
+        },
+        "EGBO": {
+            "Elevation": 283,
+            "Long": -2.25971985,
+            "Latt": 52.51777649
+        },
+        "EGBP": {
+            "Elevation": 436,
+            "Long": -2.0569458,
+            "Latt": 51.66805649
+        },
+        "EGBQ": {
+            "Elevation": 693,
+            "Long": -2.63412476,
+            "Latt": 50.72451019
+        },
+        "EGBR": {
+            "Elevation": 24,
+            "Long": -0.91551208,
+            "Latt": 53.80238724
+        },
+        "EGBS": {
+            "Elevation": 317,
+            "Long": -2.88110352,
+            "Latt": 52.24166489
+        },
+        "EGBT": {
+            "Elevation": 438,
+            "Long": -1.09771729,
+            "Latt": 52.04081345
+        },
+        "EGBW": {
+            "Elevation": 159,
+            "Long": -1.61444092,
+            "Latt": 52.1922226
+        },
+        "EGBX": {
+            "Elevation": 144,
+            "Long": -2.759552,
+            "Latt": 50.75103378
+        },
+        "EGBY": {
+            "Elevation": 19,
+            "Long": -1.08587646,
+            "Latt": 53.74744034
+        },
+        "EGBZ": {
+            "Elevation": 226,
+            "Long": -3.24183655,
+            "Latt": 51.00349426
+        },
+        "EGCA": {
+            "Elevation": 712,
+            "Long": -1.42791748,
+            "Latt": 53.30460739
+        },
+        "EGCB": {
+            "Elevation": 73,
+            "Long": -2.38908386,
+            "Latt": 53.47182465
+        },
+        "EGCE": {
+            "Elevation": 646,
+            "Long": -3.355896,
+            "Latt": 53.27030563
+        },
+        "EGCF": {
+            "Elevation": 13,
+            "Long": -0.8583374,
+            "Latt": 53.5597229
+        },
+        "EGCI": {
+            "Elevation": 199,
+            "Long": -1.24784851,
+            "Latt": 50.97298813
+        },
+        "EGCJ": {
+            "Elevation": 26,
+            "Long": -1.21777344,
+            "Latt": 53.78416824
+        },
+        "EGCK": {
+            "Elevation": 14,
+            "Long": -4.3374939,
+            "Latt": 53.10194397
+        },
+        "EGCL": {
+            "Elevation": 6,
+            "Long": -0.02999878,
+            "Latt": 52.73944473
+        },
+        "EGCM": {
+            "Elevation": 29,
+            "Long": -1.19555664,
+            "Latt": 53.83444595
+        },
+        "EGCN": {
+            "Elevation": 55,
+            "Long": -1.00416565,
+            "Latt": 53.47527695
+        },
+        "EGCQ": {
+            "Elevation": 562,
+            "Long": -1.71061707,
+            "Latt": 51.49526596
+        },
+        "EGCR": {
+            "Elevation": 150,
+            "Long": -2.13143921,
+            "Latt": 51.70704651
+        },
+        "EGCS": {
+            "Elevation": 58,
+            "Long": -0.6852417,
+            "Latt": 53.38119125
+        },
+        "EGCT": {
+            "Elevation": 299,
+            "Long": -2.64736938,
+            "Latt": 52.93253708
+        },
+        "EGCU": {
+            "Elevation": 186,
+            "Long": 1.31906128,
+            "Latt": 52.89295197
+        },
+        "EGCV": {
+            "Elevation": 275,
+            "Long": -2.77166748,
+            "Latt": 52.83388901
+        },
+        "EGCW": {
+            "Elevation": 235,
+            "Long": -3.15333557,
+            "Latt": 52.62861252
+        },
+        "EGCX": {
+            "Elevation": 123,
+            "Long": -2.51850891,
+            "Latt": 50.62746048
+        },
+        "EGCY": {
+            "Elevation": 111,
+            "Long": -0.32991028,
+            "Latt": 52.58473587
+        },
+        "EGCZ": {
+            "Elevation": 7,
+            "Long": -0.07403564,
+            "Latt": 52.9749527
+        },
+        "EGDA": {
+            "Elevation": 28,
+            "Long": -5.7550354,
+            "Latt": 55.65511703
+        },
+        "EGDB": {
+            "Elevation": 485,
+            "Long": -1.20697021,
+            "Latt": 52.02814484
+        },
+        "EGDC": {
+            "Elevation": 22,
+            "Long": -4.15055847,
+            "Latt": 51.08972168
+        },
+        "EGDD": {
+            "Elevation": 255,
+            "Long": -1.13124084,
+            "Latt": 51.91659546
+        },
+        "EGDE": {
+            "Elevation": 400,
+            "Long": -1.06030273,
+            "Latt": 51.98538589
+        },
+        "EGDG": {
+            "Elevation": 632,
+            "Long": -1.67373657,
+            "Latt": 51.30788422
+        },
+        "EGDH": {
+            "Elevation": 362,
+            "Long": 1.27801514,
+            "Latt": 51.17612457
+        },
+        "EGDI": {
+            "Elevation": 144,
+            "Long": -2.93566895,
+            "Latt": 50.96250153
+        },
+        "EGDJ": {
+            "Elevation": 568,
+            "Long": -0.527771,
+            "Latt": 52.7806015
+        },
+        "EGDK": {
+            "Elevation": 298,
+            "Long": -0.70149231,
+            "Latt": 52.21343613
+        },
+        "EGDL": {
+            "Elevation": 465,
+            "Long": -1.98901367,
+            "Latt": 51.50476456
+        },
+        "EGDM": {
+            "Elevation": 406,
+            "Long": -1.75102234,
+            "Latt": 51.15330887
+        },
+        "EGDN": {
+            "Elevation": 454,
+            "Long": -1.75416565,
+            "Latt": 51.24716568
+        },
+        "EGDO": {
+            "Elevation": 288,
+            "Long": -5.23176575,
+            "Latt": 50.00203323
+        },
+        "EGDR": {
+            "Elevation": 268,
+            "Long": -5.2540741,
+            "Latt": 50.08539581
+        },
+        "EGDS": {
+            "Elevation": 46,
+            "Long": 0.52404785,
+            "Latt": 52.72374725
+        },
+        "EGDT": {
+            "Elevation": 635,
+            "Long": -1.80065918,
+            "Latt": 51.50724411
+        },
+        "EGDU": {
+            "Elevation": 644,
+            "Long": -2.4697113,
+            "Latt": 52.29886246
+        },
+        "EGDW": {
+            "Elevation": 516,
+            "Long": -4.03152466,
+            "Latt": 55.04788589
+        },
+        "EGDX": {
+            "Elevation": 151,
+            "Long": -3.43318176,
+            "Latt": 51.40523911
+        },
+        "EGDY": {
+            "Elevation": 75,
+            "Long": -2.64549255,
+            "Latt": 51.00827026
+        },
+        "EGDZ": {
+            "Elevation": 272,
+            "Long": -0.9356842,
+            "Latt": 52.00584412
+        },
+        "EGEB": {
+            "Elevation": 230,
+            "Long": -1.07632446,
+            "Latt": 51.90320587
+        },
+        "EGEC": {
+            "Elevation": 42,
+            "Long": -5.68804932,
+            "Latt": 55.4375
+        },
+        "EGED": {
+            "Elevation": 13,
+            "Long": -2.77250671,
+            "Latt": 59.1902771
+        },
+        "EGEE": {
+            "Elevation": 304,
+            "Long": -1.05718994,
+            "Latt": 53.01041794
+        },
+        "EGEF": {
+            "Elevation": 237,
+            "Long": -1.62860107,
+            "Latt": 59.53472137
+        },
+        "EGEH": {
+            "Elevation": 66,
+            "Long": -0.92738342,
+            "Latt": 60.37665176
+        },
+        "EGEI": {
+            "Elevation": 34,
+            "Long": -2.52217102,
+            "Latt": 51.3416214
+        },
+        "EGEJ": {
+            "Elevation": 546,
+            "Long": -1.35266113,
+            "Latt": 52.69854736
+        },
+        "EGEK": {
+            "Elevation": 603,
+            "Long": -1.65653992,
+            "Latt": 53.00509644
+        },
+        "EGEL": {
+            "Elevation": 21,
+            "Long": -6.61776733,
+            "Latt": 56.60194397
+        },
+        "EGEN": {
+            "Elevation": 56,
+            "Long": -2.43444824,
+            "Latt": 59.36750031
+        },
+        "EGEO": {
+            "Elevation": 24,
+            "Long": -5.3999939,
+            "Latt": 56.4636116
+        },
+        "EGEP": {
+            "Elevation": 92,
+            "Long": -2.90026855,
+            "Latt": 59.35111237
+        },
+        "EGEQ": {
+            "Elevation": 177,
+            "Long": -2.35668945,
+            "Latt": 52.00082779
+        },
+        "EGER": {
+            "Elevation": 39,
+            "Long": -2.64138794,
+            "Latt": 59.15527725
+        },
+        "EGES": {
+            "Elevation": 62,
+            "Long": -2.57501221,
+            "Latt": 59.25027847
+        },
+        "EGET": {
+            "Elevation": 45,
+            "Long": -1.24362183,
+            "Latt": 60.19194412
+        },
+        "EGEU": {
+            "Elevation": 454,
+            "Long": -1.99383545,
+            "Latt": 52.33197784
+        },
+        "EGEV": {
+            "Elevation": 276,
+            "Long": -0.5708313,
+            "Latt": 52.65236664
+        },
+        "EGEW": {
+            "Elevation": 30,
+            "Long": -2.95027161,
+            "Latt": 59.34999847
+        },
+        "EGEX": {
+            "Elevation": 433,
+            "Long": -3.0463562,
+            "Latt": 52.94748306
+        },
+        "EGEY": {
+            "Elevation": 44,
+            "Long": -6.24305725,
+            "Latt": 56.05749893
+        },
+        "EGFA": {
+            "Elevation": 428,
+            "Long": -4.55944824,
+            "Latt": 52.11472321
+        },
+        "EGFB": {
+            "Elevation": 408,
+            "Long": 1.15335083,
+            "Latt": 51.18709183
+        },
+        "EGFD": {
+            "Elevation": 30,
+            "Long": -4.12478638,
+            "Latt": 52.80974197
+        },
+        "EGFE": {
+            "Elevation": 160,
+            "Long": -4.96083069,
+            "Latt": 51.83333206
+        },
+        "EGFF": {
+            "Elevation": 220,
+            "Long": -3.34333801,
+            "Latt": 51.39666748
+        },
+        "EGFG": {
+            "Elevation": 201,
+            "Long": -0.16790771,
+            "Latt": 52.01992416
+        },
+        "EGFH": {
+            "Elevation": 298,
+            "Long": -4.0680542,
+            "Latt": 51.60499954
+        },
+        "EGFI": {
+            "Elevation": 355,
+            "Long": -1.45851135,
+            "Latt": 54.68672943
+        },
+        "EGFJ": {
+            "Elevation": 472,
+            "Long": -0.5758667,
+            "Latt": 53.77223969
+        },
+        "EGFK": {
+            "Elevation": 219,
+            "Long": -0.36491394,
+            "Latt": 52.24166489
+        },
+        "EGFL": {
+            "Elevation": 197,
+            "Long": -1.7204895,
+            "Latt": 55.27835083
+        },
+        "EGFM": {
+            "Elevation": 494,
+            "Long": -1.16931152,
+            "Latt": 52.12552643
+        },
+        "EGFN": {
+            "Elevation": 589,
+            "Long": -1.14146423,
+            "Latt": 52.23752975
+        },
+        "EGFO": {
+            "Elevation": 622,
+            "Long": -1.01083374,
+            "Latt": 51.06054688
+        },
+        "EGFP": {
+            "Elevation": 15,
+            "Long": -4.31228638,
+            "Latt": 51.71393585
+        },
+        "EGFQ": {
+            "Elevation": 336,
+            "Long": -2.37960815,
+            "Latt": 55.70720291
+        },
+        "EGFS": {
+            "Elevation": 3,
+            "Long": -0.94033813,
+            "Latt": 53.50933456
+        },
+        "EGFT": {
+            "Elevation": 464,
+            "Long": -2.54580688,
+            "Latt": 52.36139297
+        },
+        "EGFU": {
+            "Elevation": 476,
+            "Long": -2.18450928,
+            "Latt": 50.91447449
+        },
+        "EGFV": {
+            "Elevation": 283,
+            "Long": -3.87228394,
+            "Latt": 56.36779785
+        },
+        "EGFW": {
+            "Elevation": 217,
+            "Long": 0.93167114,
+            "Latt": 52.25562668
+        },
+        "EGFX": {
+            "Elevation": 84,
+            "Long": 0.51702881,
+            "Latt": 52.59088135
+        },
+        "EGFZ": {
+            "Elevation": 59,
+            "Long": 0.51527405,
+            "Latt": 52.58428955
+        },
+        "EGGA": {
+            "Elevation": 167,
+            "Long": -6.64401245,
+            "Latt": 54.98762894
+        },
+        "EGGB": {
+            "Elevation": 546,
+            "Long": -1.98997498,
+            "Latt": 50.98471069
+        },
+        "EGGC": {
+            "Elevation": 302,
+            "Long": -0.23738098,
+            "Latt": 54.1204071
+        },
+        "EGGD": {
+            "Elevation": 622,
+            "Long": -2.71917725,
+            "Latt": 51.38277817
+        },
+        "EGGE": {
+            "Elevation": 207,
+            "Long": 0.76768494,
+            "Latt": 52.24576187
+        },
+        "EGGF": {
+            "Elevation": 272,
+            "Long": -1.3563385,
+            "Latt": 53.79257584
+        },
+        "EGGG": {
+            "Elevation": 44,
+            "Long": -0.09147644,
+            "Latt": 53.79679108
+        },
+        "EGGH": {
+            "Elevation": 150,
+            "Long": 0.84965515,
+            "Latt": 51.97423935
+        },
+        "EGGI": {
+            "Elevation": 667,
+            "Long": -4.09736633,
+            "Latt": 50.97685242
+        },
+        "EGGJ": {
+            "Elevation": 497,
+            "Long": -6.20614624,
+            "Latt": 54.84841156
+        },
+        "EGGK": {
+            "Elevation": 149,
+            "Long": -0.59272766,
+            "Latt": 51.05992126
+        },
+        "EGGL": {
+            "Elevation": 138,
+            "Long": -2.62110901,
+            "Latt": 53.47791672
+        },
+        "EGGM": {
+            "Elevation": 108,
+            "Long": -6.79200745,
+            "Latt": 55.15835571
+        },
+        "EGGN": {
+            "Elevation": 26,
+            "Long": 0.3697052,
+            "Latt": 52.29009628
+        },
+        "EGGO": {
+            "Elevation": 220,
+            "Long": -1.10003662,
+            "Latt": 51.55036926
+        },
+        "EGGP": {
+            "Elevation": 81,
+            "Long": -2.85121155,
+            "Latt": 53.33358002
+        },
+        "EGGQ": {
+            "Elevation": 374,
+            "Long": -0.09857178,
+            "Latt": 51.9480629
+        },
+        "EGGR": {
+            "Elevation": 218,
+            "Long": 0.34100342,
+            "Latt": 51.80621719
+        },
+        "EGGS": {
+            "Elevation": 0,
+            "Long": 0.08946228,
+            "Latt": 52.48824692
+        },
+        "EGGT": {
+            "Elevation": 318,
+            "Long": -4.16700745,
+            "Latt": 50.84256363
+        },
+        "EGGU": {
+            "Elevation": 100,
+            "Long": -2.80184937,
+            "Latt": 56.04353333
+        },
+        "EGGV": {
+            "Elevation": 71,
+            "Long": -0.30938721,
+            "Latt": 52.12836456
+        },
+        "EGGW": {
+            "Elevation": 527,
+            "Long": -0.36833191,
+            "Latt": 51.87472153
+        },
+        "EGGX": {
+            "Elevation": 7,
+            "Long": -0.30662537,
+            "Latt": 52.8655014
+        },
+        "EGGY": {
+            "Elevation": 676,
+            "Long": -3.73789978,
+            "Latt": 54.94688797
+        },
+        "EGGZ": {
+            "Elevation": 434,
+            "Long": -1.2076416,
+            "Latt": 51.98706818
+        },
+        "EGHA": {
+            "Elevation": 811,
+            "Long": -2.15361023,
+            "Latt": 50.96722412
+        },
+        "EGHB": {
+            "Elevation": 119,
+            "Long": 1.15544128,
+            "Latt": 51.33794022
+        },
+        "EGHC": {
+            "Elevation": 398,
+            "Long": -5.67277527,
+            "Latt": 50.10250473
+        },
+        "EGHD": {
+            "Elevation": 476,
+            "Long": -4.10827637,
+            "Latt": 50.42321014
+        },
+        "EGHE": {
+            "Elevation": 121,
+            "Long": -6.29165649,
+            "Latt": 49.91333389
+        },
+        "EGHF": {
+            "Elevation": 33,
+            "Long": -1.20666504,
+            "Latt": 50.81555557
+        },
+        "EGHG": {
+            "Elevation": 202,
+            "Long": -2.65888977,
+            "Latt": 50.93999863
+        },
+        "EGHH": {
+            "Elevation": 38,
+            "Long": -1.84249878,
+            "Latt": 50.77999878
+        },
+        "EGHI": {
+            "Elevation": 44,
+            "Long": -1.35667419,
+            "Latt": 50.95027924
+        },
+        "EGHJ": {
+            "Elevation": 53,
+            "Long": -1.10955811,
+            "Latt": 50.67805099
+        },
+        "EGHK": {
+            "Elevation": 824,
+            "Long": -3.19604492,
+            "Latt": 52.11590958
+        },
+        "EGHL": {
+            "Elevation": 618,
+            "Long": -1.03157043,
+            "Latt": 51.18748474
+        },
+        "EGHM": {
+            "Elevation": 162,
+            "Long": 0.68859863,
+            "Latt": 51.19143677
+        },
+        "EGHN": {
+            "Elevation": 55,
+            "Long": -1.18229675,
+            "Latt": 50.6529541
+        },
+        "EGHO": {
+            "Elevation": 319,
+            "Long": -1.6000061,
+            "Latt": 51.21055603
+        },
+        "EGHP": {
+            "Elevation": 550,
+            "Long": -1.23368835,
+            "Latt": 51.19540787
+        },
+        "EGHQ": {
+            "Elevation": 390,
+            "Long": -4.99526978,
+            "Latt": 50.44083405
+        },
+        "EGHR": {
+            "Elevation": 111,
+            "Long": -0.75917053,
+            "Latt": 50.85944366
+        },
+        "EGHS": {
+            "Elevation": 184,
+            "Long": -2.35650635,
+            "Latt": 50.98536301
+        },
+        "EGHT": {
+            "Elevation": 20,
+            "Long": -6.33139038,
+            "Latt": 49.94555664
+        },
+        "EGHU": {
+            "Elevation": 655,
+            "Long": -3.98880005,
+            "Latt": 50.92809677
+        },
+        "EGHV": {
+            "Elevation": 1295,
+            "Long": -1.73040771,
+            "Latt": 53.30591202
+        },
+        "EGHW": {
+            "Elevation": 25,
+            "Long": -0.51852417,
+            "Latt": 53.49687195
+        },
+        "EGHX": {
+            "Elevation": 124,
+            "Long": -0.9724884,
+            "Latt": 54.23316956
+        },
+        "EGHY": {
+            "Elevation": 400,
+            "Long": -5.14279175,
+            "Latt": 50.2787323
+        },
+        "EGHZ": {
+            "Elevation": 111,
+            "Long": -0.94128418,
+            "Latt": 54.25099945
+        },
+        "EGIA": {
+            "Elevation": 488,
+            "Long": -4.38661194,
+            "Latt": 50.94379807
+        },
+        "EGIB": {
+            "Elevation": 28,
+            "Long": -0.81460571,
+            "Latt": 53.49232483
+        },
+        "EGIC": {
+            "Elevation": 10,
+            "Long": -3.03163147,
+            "Latt": 53.5361824
+        },
+        "EGID": {
+            "Elevation": 28,
+            "Long": -1.00003052,
+            "Latt": 53.78593445
+        },
+        "EGIE": {
+            "Elevation": 14,
+            "Long": 0.79516602,
+            "Latt": 51.56925964
+        },
+        "EGIF": {
+            "Elevation": 636,
+            "Long": -3.45550537,
+            "Latt": 55.87429047
+        },
+        "EGIG": {
+            "Elevation": 312,
+            "Long": -2.20333862,
+            "Latt": 52.82797623
+        },
+        "EGIH": {
+            "Elevation": 40,
+            "Long": 0.05030823,
+            "Latt": 53.71543503
+        },
+        "EGII": {
+            "Elevation": 329,
+            "Long": -0.87211609,
+            "Latt": 52.31538391
+        },
+        "EGIJ": {
+            "Elevation": 0,
+            "Long": 0.06111145,
+            "Latt": 52.38665771
+        },
+        "EGIK": {
+            "Elevation": 182,
+            "Long": 0.90522766,
+            "Latt": 52.86099243
+        },
+        "EGIL": {
+            "Elevation": 26,
+            "Long": -2.79321289,
+            "Latt": 53.85180283
+        },
+        "EGIM": {
+            "Elevation": 627,
+            "Long": -4.46557617,
+            "Latt": 57.58945847
+        },
+        "EGIN": {
+            "Elevation": 516,
+            "Long": -2.6489563,
+            "Latt": 57.31115341
+        },
+        "EGIP": {
+            "Elevation": 491,
+            "Long": -3.06088257,
+            "Latt": 52.08545303
+        },
+        "EGIQ": {
+            "Elevation": 281,
+            "Long": 0.98841858,
+            "Latt": 51.09197998
+        },
+        "EGIR": {
+            "Elevation": 301,
+            "Long": -0.65571594,
+            "Latt": 52.25950241
+        },
+        "EGIS": {
+            "Elevation": 6,
+            "Long": -5.92156982,
+            "Latt": 55.87259293
+        },
+        "EGIT": {
+            "Elevation": 557,
+            "Long": -2.60832214,
+            "Latt": 55.67703629
+        },
+        "EGIU": {
+            "Elevation": 255,
+            "Long": -1.22189331,
+            "Latt": 51.87870789
+        },
+        "EGIV": {
+            "Elevation": 179,
+            "Long": -2.11236572,
+            "Latt": 51.31329346
+        },
+        "EGIW": {
+            "Elevation": 620,
+            "Long": -1.47409058,
+            "Latt": 52.0854454
+        },
+        "EGIX": {
+            "Elevation": 211,
+            "Long": -0.80796814,
+            "Latt": 51.15023804
+        },
+        "EGIY": {
+            "Elevation": 529,
+            "Long": -1.38127136,
+            "Latt": 52.10112
+        },
+        "EGIZ": {
+            "Elevation": 589,
+            "Long": -1.48989868,
+            "Latt": 52.00923538
+        },
+        "EGJA": {
+            "Elevation": 290,
+            "Long": -2.21444702,
+            "Latt": 49.70666504
+        },
+        "EGJB": {
+            "Elevation": 336,
+            "Long": -2.60276794,
+            "Latt": 49.43500137
+        },
+        "EGJC": {
+            "Elevation": 138,
+            "Long": 1.19462585,
+            "Latt": 52.70600128
+        },
+        "EGJD": {
+            "Elevation": 141,
+            "Long": -3.38641357,
+            "Latt": 53.21043396
+        },
+        "EGJE": {
+            "Elevation": 25,
+            "Long": 0.35493469,
+            "Latt": 51.56398392
+        },
+        "EGJF": {
+            "Elevation": 21,
+            "Long": -2.90258789,
+            "Latt": 53.89725876
+        },
+        "EGJG": {
+            "Elevation": 286,
+            "Long": -1.72615051,
+            "Latt": 55.47901154
+        },
+        "EGJI": {
+            "Elevation": 122,
+            "Long": -1.22688293,
+            "Latt": 54.16867447
+        },
+        "EGJJ": {
+            "Elevation": 277,
+            "Long": -2.19555664,
+            "Latt": 49.2080574
+        },
+        "EGJK": {
+            "Elevation": 14,
+            "Long": -2.8433075,
+            "Latt": 53.93483353
+        },
+        "EGJL": {
+            "Elevation": 320,
+            "Long": -3.31175232,
+            "Latt": 57.58657074
+        },
+        "EGJM": {
+            "Elevation": 358,
+            "Long": -2.45440674,
+            "Latt": 52.10593414
+        },
+        "EGJN": {
+            "Elevation": 567,
+            "Long": -1.77037048,
+            "Latt": 51.42315674
+        },
+        "EGJO": {
+            "Elevation": 807,
+            "Long": -5.94572449,
+            "Latt": 54.33002853
+        },
+        "EGJP": {
+            "Elevation": 206,
+            "Long": 1.12266541,
+            "Latt": 52.22943497
+        },
+        "EGJQ": {
+            "Elevation": 241,
+            "Long": 0.29042053,
+            "Latt": 51.7322464
+        },
+        "EGJS": {
+            "Elevation": 877,
+            "Long": -3.84396362,
+            "Latt": 55.46706772
+        },
+        "EGJT": {
+            "Elevation": 118,
+            "Long": 0.52017212,
+            "Latt": 50.93780899
+        },
+        "EGJU": {
+            "Elevation": 345,
+            "Long": -2.76237488,
+            "Latt": 52.02571487
+        },
+        "EGJV": {
+            "Elevation": 967,
+            "Long": -4.61871338,
+            "Latt": 50.63576126
+        },
+        "EGJW": {
+            "Elevation": 558,
+            "Long": -4.31564331,
+            "Latt": 57.58681488
+        },
+        "EGJX": {
+            "Elevation": 366,
+            "Long": -2.35461426,
+            "Latt": 52.40324402
+        },
+        "EGJY": {
+            "Elevation": 54,
+            "Long": -2.28190613,
+            "Latt": 51.87666321
+        },
+        "EGJZ": {
+            "Elevation": 612,
+            "Long": -3.36791992,
+            "Latt": 53.28387451
+        },
+        "EGKA": {
+            "Elevation": 7,
+            "Long": -0.29721069,
+            "Latt": 50.83555603
+        },
+        "EGKB": {
+            "Elevation": 599,
+            "Long": 0.03250122,
+            "Latt": 51.33083344
+        },
+        "EGKC": {
+            "Elevation": 5,
+            "Long": -0.65908813,
+            "Latt": 50.80135727
+        },
+        "EGKD": {
+            "Elevation": 71,
+            "Long": -6.02944946,
+            "Latt": 54.05174255
+        },
+        "EGKE": {
+            "Elevation": 606,
+            "Long": 0.82933044,
+            "Latt": 51.20619583
+        },
+        "EGKF": {
+            "Elevation": 57,
+            "Long": -2.89179993,
+            "Latt": 58.88774109
+        },
+        "EGKH": {
+            "Elevation": 70,
+            "Long": 0.6444397,
+            "Latt": 51.15638733
+        },
+        "EGKI": {
+            "Elevation": 321,
+            "Long": -1.62049866,
+            "Latt": 52.35741043
+        },
+        "EGKJ": {
+            "Elevation": 386,
+            "Long": -1.34243774,
+            "Latt": 52.48057556
+        },
+        "EGKK": {
+            "Elevation": 203,
+            "Long": -0.1902771,
+            "Latt": 51.14805603
+        },
+        "EGKL": {
+            "Elevation": 65,
+            "Long": 0.15583801,
+            "Latt": 50.88169479
+        },
+        "EGKM": {
+            "Elevation": 43,
+            "Long": -4.18649292,
+            "Latt": 56.14789581
+        },
+        "EGKN": {
+            "Elevation": 565,
+            "Long": -0.09344482,
+            "Latt": 51.30596161
+        },
+        "EGKO": {
+            "Elevation": 499,
+            "Long": -1.0451355,
+            "Latt": 52.43898392
+        },
+        "EGKP": {
+            "Elevation": 819,
+            "Long": -1.68464661,
+            "Latt": 53.56694031
+        },
+        "EGKQ": {
+            "Elevation": 242,
+            "Long": -6.56111145,
+            "Latt": 54.06282043
+        },
+        "EGKR": {
+            "Elevation": 222,
+            "Long": -0.13861084,
+            "Latt": 51.2136116
+        },
+        "EGKS": {
+            "Elevation": 600,
+            "Long": -1.24807739,
+            "Latt": 51.29227829
+        },
+        "EGKT": {
+            "Elevation": 686,
+            "Long": -6.29164124,
+            "Latt": 54.32687759
+        },
+        "EGKU": {
+            "Elevation": 229,
+            "Long": -6.75645447,
+            "Latt": 54.80383682
+        },
+        "EGKV": {
+            "Elevation": 556,
+            "Long": -1.17700195,
+            "Latt": 52.17831421
+        },
+        "EGKW": {
+            "Elevation": 654,
+            "Long": -3.39971924,
+            "Latt": 55.87550354
+        },
+        "EGKX": {
+            "Elevation": 183,
+            "Long": -0.57514954,
+            "Latt": 53.46177673
+        },
+        "EGKY": {
+            "Elevation": 389,
+            "Long": -2.94569397,
+            "Latt": 52.16201019
+        },
+        "EGKZ": {
+            "Elevation": 291,
+            "Long": -0.63354492,
+            "Latt": 52.36848831
+        },
+        "EGLA": {
+            "Elevation": 650,
+            "Long": -4.66586304,
+            "Latt": 50.50032806
+        },
+        "EGLB": {
+            "Elevation": 563,
+            "Long": -2.59152222,
+            "Latt": 51.83843994
+        },
+        "EGLC": {
+            "Elevation": 19,
+            "Long": 0.05526733,
+            "Latt": 51.50527954
+        },
+        "EGLD": {
+            "Elevation": 249,
+            "Long": -0.51304626,
+            "Latt": 51.58833313
+        },
+        "EGLE": {
+            "Elevation": 276,
+            "Long": 1.05345154,
+            "Latt": 51.10922623
+        },
+        "EGLF": {
+            "Elevation": 238,
+            "Long": -0.77752686,
+            "Latt": 51.27539063
+        },
+        "EGLG": {
+            "Elevation": 254,
+            "Long": -0.15786743,
+            "Latt": 51.80200195
+        },
+        "EGLH": {
+            "Elevation": 244,
+            "Long": 0.85710144,
+            "Latt": 52.0697937
+        },
+        "EGLI": {
+            "Elevation": 72,
+            "Long": 1.18232727,
+            "Latt": 51.91202927
+        },
+        "EGLJ": {
+            "Elevation": 240,
+            "Long": -1.08526611,
+            "Latt": 51.67444611
+        },
+        "EGLK": {
+            "Elevation": 325,
+            "Long": -0.84750366,
+            "Latt": 51.32389069
+        },
+        "EGLL": {
+            "Elevation": 83,
+            "Long": -0.46138,
+            "Latt": 51.47750092
+        },
+        "EGLM": {
+            "Elevation": 127,
+            "Long": -0.77471924,
+            "Latt": 51.500556950000004
+        },
+        "EGLO": {
+            "Elevation": 214,
+            "Long": 0.73631287,
+            "Latt": 52.06829453
+        },
+        "EGLP": {
+            "Elevation": 195,
+            "Long": -1.17114258,
+            "Latt": 51.38372421
+        },
+        "EGLQ": {
+            "Elevation": 574,
+            "Long": 1.04594421,
+            "Latt": 51.14614105
+        },
+        "EGLS": {
+            "Elevation": 268,
+            "Long": -1.784729,
+            "Latt": 51.09859085
+        },
+        "EGLT": {
+            "Elevation": 95,
+            "Long": -1.59191895,
+            "Latt": 50.66224289
+        },
+        "EGLU": {
+            "Elevation": 150,
+            "Long": -2.4765625,
+            "Latt": 53.36880112
+        },
+        "EGLV": {
+            "Elevation": 15,
+            "Long": -6.96847534,
+            "Latt": 55.13943481
+        },
+        "EGLW": {
+            "Elevation": 23,
+            "Long": -0.17897034,
+            "Latt": 51.46977615
+        },
+        "EGLX": {
+            "Elevation": 79,
+            "Long": -0.69035339,
+            "Latt": 53.00648499
+        },
+        "EGLY": {
+            "Elevation": 93,
+            "Long": -2.09767151,
+            "Latt": 50.79483795
+        },
+        "EGLZ": {
+            "Elevation": 105,
+            "Long": -3.1892395,
+            "Latt": 57.66437149
+        },
+        "EGMA": {
+            "Elevation": 124,
+            "Long": 0.06072998,
+            "Latt": 52.07718658
+        },
+        "EGMB": {
+            "Elevation": 7,
+            "Long": 0.0642395,
+            "Latt": 52.63106155
+        },
+        "EGMC": {
+            "Elevation": 55,
+            "Long": 0.69334412,
+            "Latt": 51.57027817
+        },
+        "EGMD": {
+            "Elevation": 13,
+            "Long": 0.93888855,
+            "Latt": 50.95611191
+        },
+        "EGME": {
+            "Elevation": 700,
+            "Long": -2.24623108,
+            "Latt": 51.12876511
+        },
+        "EGMF": {
+            "Elevation": 420,
+            "Long": 0.60124207,
+            "Latt": 51.33288574
+        },
+        "EGMG": {
+            "Elevation": 30,
+            "Long": -0.83724976,
+            "Latt": 53.86859131
+        },
+        "EGMH": {
+            "Elevation": 178,
+            "Long": 1.34632874,
+            "Latt": 51.34404373
+        },
+        "EGMI": {
+            "Elevation": 15,
+            "Long": -0.91011047,
+            "Latt": 53.42173767
+        },
+        "EGMJ": {
+            "Elevation": 250,
+            "Long": -0.15368652,
+            "Latt": 52.16656876
+        },
+        "EGMK": {
+            "Elevation": 317,
+            "Long": -1.41842651,
+            "Latt": 52.62821198
+        },
+        "EGML": {
+            "Elevation": 56,
+            "Long": 0.2454834,
+            "Latt": 51.52855301
+        },
+        "EGMM": {
+            "Elevation": 318,
+            "Long": -1.47183228,
+            "Latt": 52.64314651
+        },
+        "EGMN": {
+            "Elevation": 9,
+            "Long": -0.68360901,
+            "Latt": 53.53469467
+        },
+        "EGMO": {
+            "Elevation": 343,
+            "Long": -0.61865234,
+            "Latt": 52.55945587
+        },
+        "EGMP": {
+            "Elevation": 276,
+            "Long": -2.2339325,
+            "Latt": 51.05701447
+        },
+        "EGMQ": {
+            "Elevation": 606,
+            "Long": -2.74200439,
+            "Latt": 55.5403595
+        },
+        "EGMR": {
+            "Elevation": 631,
+            "Long": -1.73335266,
+            "Latt": 51.39009857
+        },
+        "EGMS": {
+            "Elevation": 346,
+            "Long": -1.52333069,
+            "Latt": 52.66904449
+        },
+        "EGMT": {
+            "Elevation": 23,
+            "Long": 0.36750793,
+            "Latt": 51.53742599
+        },
+        "EGMU": {
+            "Elevation": 685,
+            "Long": -2.56251526,
+            "Latt": 52.50343704
+        },
+        "EGMV": {
+            "Elevation": 356,
+            "Long": -1.9287262,
+            "Latt": 51.33084106
+        },
+        "EGMW": {
+            "Elevation": 1133,
+            "Long": -3.22247314,
+            "Latt": 53.04332733
+        },
+        "EGMX": {
+            "Elevation": 76,
+            "Long": -2.84881592,
+            "Latt": 51.71932983
+        },
+        "EGMY": {
+            "Elevation": 584,
+            "Long": -1.74868774,
+            "Latt": 52.97066498
+        },
+        "EGNB": {
+            "Elevation": 12,
+            "Long": -0.56550598,
+            "Latt": 53.72126389
+        },
+        "EGNC": {
+            "Elevation": 190,
+            "Long": -2.80889893,
+            "Latt": 54.9375
+        },
+        "EGND": {
+            "Elevation": 801,
+            "Long": -1.83277893,
+            "Latt": 53.62067413
+        },
+        "EGNE": {
+            "Elevation": 87,
+            "Long": -0.9513855,
+            "Latt": 53.28055573
+        },
+        "EGNF": {
+            "Elevation": 248,
+            "Long": -1.19610596,
+            "Latt": 53.31694412
+        },
+        "EGNG": {
+            "Elevation": 160,
+            "Long": -1.29385376,
+            "Latt": 54.21133041
+        },
+        "EGNH": {
+            "Elevation": 34,
+            "Long": -3.02861023,
+            "Latt": 53.77166748
+        },
+        "EGNI": {
+            "Elevation": 6,
+            "Long": 0.32821655,
+            "Latt": 53.17298508
+        },
+        "EGNJ": {
+            "Elevation": 121,
+            "Long": -0.35139465,
+            "Latt": 53.57333374
+        },
+        "EGNK": {
+            "Elevation": 121,
+            "Long": -2.7346344,
+            "Latt": 56.00086594
+        },
+        "EGNL": {
+            "Elevation": 44,
+            "Long": -3.26750183,
+            "Latt": 54.12861252
+        },
+        "EGNM": {
+            "Elevation": 681,
+            "Long": -1.6608429,
+            "Latt": 53.86611176
+        },
+        "EGNN": {
+            "Elevation": 435,
+            "Long": -2.22024536,
+            "Latt": 51.41103363
+        },
+        "EGNO": {
+            "Elevation": 54,
+            "Long": -2.88343811,
+            "Latt": 53.74502563
+        },
+        "EGNP": {
+            "Elevation": 1406,
+            "Long": -2.87834167,
+            "Latt": 52.51397705
+        },
+        "EGNQ": {
+            "Elevation": 237,
+            "Long": -0.51211548,
+            "Latt": 53.07730103
+        },
+        "EGNR": {
+            "Elevation": 45,
+            "Long": -2.9777832,
+            "Latt": 53.17805481
+        },
+        "EGNS": {
+            "Elevation": 52,
+            "Long": -4.62332153,
+            "Latt": 54.08333206
+        },
+        "EGNT": {
+            "Elevation": 266,
+            "Long": -1.68972778,
+            "Latt": 55.03805542
+        },
+        "EGNU": {
+            "Elevation": 86,
+            "Long": -0.86480713,
+            "Latt": 53.98006439
+        },
+        "EGNV": {
+            "Elevation": 120,
+            "Long": -1.42944336,
+            "Latt": 54.50916672
+        },
+        "EGNW": {
+            "Elevation": 84,
+            "Long": -0.34889221,
+            "Latt": 53.31694412
+        },
+        "EGNX": {
+            "Elevation": 306,
+            "Long": -1.32777405,
+            "Latt": 52.83111191
+        },
+        "EGNY": {
+            "Elevation": 5,
+            "Long": -0.36178589,
+            "Latt": 53.89852524
+        },
+        "EGNZ": {
+            "Elevation": 578,
+            "Long": -2.24017334,
+            "Latt": 51.62887192
+        },
+        "EGOA": {
+            "Elevation": 525,
+            "Long": -1.83537292,
+            "Latt": 51.79450607
+        },
+        "EGOB": {
+            "Elevation": 362,
+            "Long": -1.58407593,
+            "Latt": 52.73244476
+        },
+        "EGOC": {
+            "Elevation": 677,
+            "Long": -1.55993652,
+            "Latt": 51.47915649
+        },
+        "EGOE": {
+            "Elevation": 285,
+            "Long": -2.53349304,
+            "Latt": 52.87116623
+        },
+        "EGOF": {
+            "Elevation": 180,
+            "Long": 1.15614319,
+            "Latt": 52.45610809
+        },
+        "EGOH": {
+            "Elevation": 327,
+            "Long": -0.90658569,
+            "Latt": 52.74045563
+        },
+        "EGOI": {
+            "Elevation": 9,
+            "Long": 0.00189209,
+            "Latt": 50.85374451
+        },
+        "EGOJ": {
+            "Elevation": 68,
+            "Long": 0.62176514,
+            "Latt": 51.00468826
+        },
+        "EGOL": {
+            "Elevation": 60,
+            "Long": 0.84655762,
+            "Latt": 51.4030571
+        },
+        "EGOM": {
+            "Elevation": 907,
+            "Long": -2.56057739,
+            "Latt": 55.05329895
+        },
+        "EGON": {
+            "Elevation": 247,
+            "Long": 0.07095337,
+            "Latt": 51.80724335
+        },
+        "EGOO": {
+            "Elevation": 992,
+            "Long": -1.8352356,
+            "Latt": 53.0334816
+        },
+        "EGOP": {
+            "Elevation": 370,
+            "Long": -1.39024353,
+            "Latt": 52.63668823
+        },
+        "EGOQ": {
+            "Elevation": 202,
+            "Long": -4.37402344,
+            "Latt": 53.25930023
+        },
+        "EGOR": {
+            "Elevation": 148,
+            "Long": -2.57148743,
+            "Latt": 53.16432571
+        },
+        "EGOS": {
+            "Elevation": 248,
+            "Long": -2.66793823,
+            "Latt": 52.79362488
+        },
+        "EGOT": {
+            "Elevation": 422,
+            "Long": 0.02778625,
+            "Latt": 51.27616119
+        },
+        "EGOU": {
+            "Elevation": 98,
+            "Long": -0.34751892,
+            "Latt": 53.42883301
+        },
+        "EGOV": {
+            "Elevation": 36,
+            "Long": -4.53533936,
+            "Latt": 53.24816513
+        },
+        "EGOW": {
+            "Elevation": 37,
+            "Long": -3.05552673,
+            "Latt": 53.58157349
+        },
+        "EGOX": {
+            "Elevation": 1062,
+            "Long": -1.93132019,
+            "Latt": 53.81438446
+        },
+        "EGOY": {
+            "Elevation": 47,
+            "Long": -4.94410706,
+            "Latt": 54.85219955
+        },
+        "EGOZ": {
+            "Elevation": 1389,
+            "Long": -1.94438171,
+            "Latt": 53.11487579
+        },
+        "EGPA": {
+            "Elevation": 58,
+            "Long": -2.90055847,
+            "Latt": 58.95805359
+        },
+        "EGPB": {
+            "Elevation": 21,
+            "Long": -1.29388428,
+            "Latt": 59.88138962
+        },
+        "EGPC": {
+            "Elevation": 126,
+            "Long": -3.0930481,
+            "Latt": 58.45889282
+        },
+        "EGPD": {
+            "Elevation": 215,
+            "Long": -2.19805908,
+            "Latt": 57.20249939
+        },
+        "EGPE": {
+            "Elevation": 31,
+            "Long": -4.04750061,
+            "Latt": 57.54249954
+        },
+        "EGPF": {
+            "Elevation": 26,
+            "Long": -4.43305969,
+            "Latt": 55.87194443
+        },
+        "EGPG": {
+            "Elevation": 350,
+            "Long": -3.97555542,
+            "Latt": 55.97472382
+        },
+        "EGPH": {
+            "Elevation": 136,
+            "Long": -3.37249756,
+            "Latt": 55.95000076
+        },
+        "EGPI": {
+            "Elevation": 56,
+            "Long": -6.25971985,
+            "Latt": 55.68333435
+        },
+        "EGPJ": {
+            "Elevation": 399,
+            "Long": -3.22029114,
+            "Latt": 56.18328094
+        },
+        "EGPK": {
+            "Elevation": 65,
+            "Long": -4.5944519,
+            "Latt": 55.50944519
+        },
+        "EGPL": {
+            "Elevation": 19,
+            "Long": -7.3638916,
+            "Latt": 57.48055649
+        },
+        "EGPM": {
+            "Elevation": 47,
+            "Long": -1.29611206,
+            "Latt": 60.43264008
+        },
+        "EGPN": {
+            "Elevation": 17,
+            "Long": -3.02583313,
+            "Latt": 56.45249939
+        },
+        "EGPO": {
+            "Elevation": 26,
+            "Long": -6.33111572,
+            "Latt": 58.2155571
+        },
+        "EGPP": {
+            "Elevation": 600,
+            "Long": -2.65222168,
+            "Latt": 54.73782349
+        },
+        "EGPQ": {
+            "Elevation": 1014,
+            "Long": -2.93461609,
+            "Latt": 54.65617371
+        },
+        "EGPR": {
+            "Elevation": 5,
+            "Long": -7.44761658,
+            "Latt": 57.02430344
+        },
+        "EGPT": {
+            "Elevation": 395,
+            "Long": -3.37388611,
+            "Latt": 56.44111252
+        },
+        "EGPU": {
+            "Elevation": 38,
+            "Long": -6.86917114,
+            "Latt": 56.4991684
+        },
+        "EGPV": {
+            "Elevation": 853,
+            "Long": -2.67097473,
+            "Latt": 54.57056808
+        },
+        "EGPW": {
+            "Elevation": 65,
+            "Long": -0.85401917,
+            "Latt": 60.74682617
+        },
+        "EGPY": {
+            "Elevation": 134,
+            "Long": -3.71728516,
+            "Latt": 51.54733276
+        },
+        "EGPZ": {
+            "Elevation": 216,
+            "Long": -0.36146545,
+            "Latt": 52.31435013
+        },
+        "EGQA": {
+            "Elevation": 53,
+            "Long": 0.42584229,
+            "Latt": 51.17873383
+        },
+        "EGQB": {
+            "Elevation": 0,
+            "Long": -7.0177002,
+            "Latt": 55.06017303
+        },
+        "EGQC": {
+            "Elevation": 43,
+            "Long": 0.41207886,
+            "Latt": 51.19182968
+        },
+        "EGQD": {
+            "Elevation": 387,
+            "Long": -2.75068665,
+            "Latt": 56.26897049
+        },
+        "EGQE": {
+            "Elevation": 373,
+            "Long": -2.24954224,
+            "Latt": 57.31891632
+        },
+        "EGQF": {
+            "Elevation": 263,
+            "Long": -1.91172791,
+            "Latt": 57.40664673
+        },
+        "EGQG": {
+            "Elevation": 161,
+            "Long": -1.86457825,
+            "Latt": 57.516819
+        },
+        "EGQH": {
+            "Elevation": 335,
+            "Long": -2.09190369,
+            "Latt": 52.70960617
+        },
+        "EGQI": {
+            "Elevation": 477,
+            "Long": -3.8260498,
+            "Latt": 56.76375198
+        },
+        "EGQJ": {
+            "Elevation": 87,
+            "Long": -0.79501343,
+            "Latt": 53.92631531
+        },
+        "EGQK": {
+            "Elevation": 17,
+            "Long": -3.56059265,
+            "Latt": 57.64940643
+        },
+        "EGQL": {
+            "Elevation": 38,
+            "Long": -2.86849976,
+            "Latt": 56.37266541
+        },
+        "EGQN": {
+            "Elevation": 49,
+            "Long": -0.07028198,
+            "Latt": 52.272686
+        },
+        "EGQO": {
+            "Elevation": 166,
+            "Long": -4.89723206,
+            "Latt": 50.56141663
+        },
+        "EGQP": {
+            "Elevation": 217,
+            "Long": -1.59628296,
+            "Latt": 54.86962128
+        },
+        "EGQQ": {
+            "Elevation": 523,
+            "Long": -4.30839539,
+            "Latt": 50.47545624
+        },
+        "EGQR": {
+            "Elevation": 316,
+            "Long": -7.26647949,
+            "Latt": 54.88954163
+        },
+        "EGQS": {
+            "Elevation": 40,
+            "Long": -3.33912659,
+            "Latt": 57.70502853
+        },
+        "EGQT": {
+            "Elevation": 74,
+            "Long": -0.20223999,
+            "Latt": 53.56162643
+        },
+        "EGQU": {
+            "Elevation": 6,
+            "Long": -0.34251404,
+            "Latt": 52.74536896
+        },
+        "EGQV": {
+            "Elevation": 272,
+            "Long": -1.42066956,
+            "Latt": 52.2347374
+        },
+        "EGQW": {
+            "Elevation": 224,
+            "Long": -1.09391785,
+            "Latt": 53.061607359999996
+        },
+        "EGQX": {
+            "Elevation": 293,
+            "Long": -2.40313721,
+            "Latt": 51.47348022
+        },
+        "EGQZ": {
+            "Elevation": 372,
+            "Long": -2.63751221,
+            "Latt": 52.58391953
+        },
+        "EGRA": {
+            "Elevation": 210,
+            "Long": -0.47819519,
+            "Latt": 52.36756897
+        },
+        "EGRB": {
+            "Elevation": 155,
+            "Long": -1.20491028,
+            "Latt": 50.72209167
+        },
+        "EGRC": {
+            "Elevation": 85,
+            "Long": -1.06977844,
+            "Latt": 54.58466721
+        },
+        "EGRD": {
+            "Elevation": 468,
+            "Long": 0.07025146,
+            "Latt": 51.99518585
+        },
+        "EGRE": {
+            "Elevation": 228,
+            "Long": -0.86619568,
+            "Latt": 53.31412506
+        },
+        "EGRF": {
+            "Elevation": 465,
+            "Long": -6.22898865,
+            "Latt": 54.2529068
+        },
+        "EGRG": {
+            "Elevation": 409,
+            "Long": -1.90093994,
+            "Latt": 52.81965637
+        },
+        "EGRH": {
+            "Elevation": 258,
+            "Long": -2.31828308,
+            "Latt": 53.14189529
+        },
+        "EGRI": {
+            "Elevation": 201,
+            "Long": -2.90740967,
+            "Latt": 52.07777405
+        },
+        "EGRJ": {
+            "Elevation": 59,
+            "Long": -5.44996643,
+            "Latt": 50.17946243
+        },
+        "EGRK": {
+            "Elevation": 269,
+            "Long": -2.97767639,
+            "Latt": 56.22405243
+        },
+        "EGRL": {
+            "Elevation": 818,
+            "Long": -1.92558289,
+            "Latt": 55.2209053
+        },
+        "EGRM": {
+            "Elevation": 74,
+            "Long": -0.1434021,
+            "Latt": 52.43734741
+        },
+        "EGRN": {
+            "Elevation": 155,
+            "Long": -1.18232727,
+            "Latt": 51.60038376
+        },
+        "EGRO": {
+            "Elevation": 511,
+            "Long": -4.8162384,
+            "Latt": 50.42284012
+        },
+        "EGRP": {
+            "Elevation": 301,
+            "Long": 0.01683044,
+            "Latt": 51.65400696
+        },
+        "EGRQ": {
+            "Elevation": 118,
+            "Long": -0.51548767,
+            "Latt": 52.18497467
+        },
+        "EGRR": {
+            "Elevation": 347,
+            "Long": -2.32472229,
+            "Latt": 51.25387192
+        },
+        "EGRS": {
+            "Elevation": 273,
+            "Long": -1.7375946,
+            "Latt": 52.91917801
+        },
+        "EGRT": {
+            "Elevation": 37,
+            "Long": -5.04808044,
+            "Latt": 55.75691223
+        },
+        "EGRU": {
+            "Elevation": 335,
+            "Long": -3.32295227,
+            "Latt": 53.0632515
+        },
+        "EGRV": {
+            "Elevation": 153,
+            "Long": -0.25744629,
+            "Latt": 53.3227272
+        },
+        "EGRW": {
+            "Elevation": 970,
+            "Long": -2.25553894,
+            "Latt": 53.72366333
+        },
+        "EGRZ": {
+            "Elevation": 498,
+            "Long": -0.89050293,
+            "Latt": 51.59570694
+        },
+        "EGSA": {
+            "Elevation": 210,
+            "Long": 0.92805481,
+            "Latt": 52.62949371
+        },
+        "EGSC": {
+            "Elevation": 47,
+            "Long": 0.17498779,
+            "Latt": 52.20500183
+        },
+        "EGSF": {
+            "Elevation": 26,
+            "Long": -0.25083923,
+            "Latt": 52.46805573
+        },
+        "EGSG": {
+            "Elevation": 185,
+            "Long": 0.15611267,
+            "Latt": 51.65250015
+        },
+        "EGSH": {
+            "Elevation": 117,
+            "Long": 1.28277588,
+            "Latt": 52.67583466
+        },
+        "EGSI": {
+            "Elevation": 1,
+            "Long": 0.29522705,
+            "Latt": 52.64386749
+        },
+        "EGSJ": {
+            "Elevation": 130,
+            "Long": 1.41719055,
+            "Latt": 52.5109787
+        },
+        "EGSL": {
+            "Elevation": 286,
+            "Long": 0.44917297,
+            "Latt": 51.89500046
+        },
+        "EGSM": {
+            "Elevation": 80,
+            "Long": 1.61831665,
+            "Latt": 52.43535233
+        },
+        "EGSN": {
+            "Elevation": 229,
+            "Long": -0.03924561,
+            "Latt": 52.21498489
+        },
+        "EGSO": {
+            "Elevation": 201,
+            "Long": 1.11068726,
+            "Latt": 52.172431950000004
+        },
+        "EGSP": {
+            "Elevation": 130,
+            "Long": -0.3888092,
+            "Latt": 52.55637741
+        },
+        "EGSQ": {
+            "Elevation": 37,
+            "Long": 1.13009644,
+            "Latt": 51.78502655
+        },
+        "EGSR": {
+            "Elevation": 227,
+            "Long": 0.68249512,
+            "Latt": 51.91444397
+        },
+        "EGSS": {
+            "Elevation": 348,
+            "Long": 0.23500061,
+            "Latt": 51.88499832
+        },
+        "EGST": {
+            "Elevation": 246,
+            "Long": 0.97796631,
+            "Latt": 52.07554626
+        },
+        "EGSU": {
+            "Elevation": 126,
+            "Long": 0.13139343,
+            "Latt": 52.0905571
+        },
+        "EGSV": {
+            "Elevation": 194,
+            "Long": 1.05194092,
+            "Latt": 52.49750137
+        },
+        "EGSW": {
+            "Elevation": 98,
+            "Long": 0.35043335,
+            "Latt": 52.23556519
+        },
+        "EGSX": {
+            "Elevation": 321,
+            "Long": 0.15415955,
+            "Latt": 51.72166824
+        },
+        "EGSY": {
+            "Elevation": 164,
+            "Long": -3.43583679,
+            "Latt": 51.40472412
+        },
+        "EGSZ": {
+            "Elevation": 721,
+            "Long": -2.28373718,
+            "Latt": 51.71347427
+        },
+        "EGTA": {
+            "Elevation": 282,
+            "Long": -0.94044495,
+            "Latt": 51.77679443
+        },
+        "EGTB": {
+            "Elevation": 513,
+            "Long": -0.80833435,
+            "Latt": 51.61166763
+        },
+        "EGTC": {
+            "Elevation": 360,
+            "Long": -0.6166687,
+            "Latt": 52.07222366
+        },
+        "EGTD": {
+            "Elevation": 172,
+            "Long": -0.53437805,
+            "Latt": 51.11768341
+        },
+        "EGTE": {
+            "Elevation": 102,
+            "Long": -3.41387939,
+            "Latt": 50.73416519
+        },
+        "EGTF": {
+            "Elevation": 80,
+            "Long": -0.55860901,
+            "Latt": 51.34805679
+        },
+        "EGTG": {
+            "Elevation": 211,
+            "Long": -2.59031677,
+            "Latt": 51.51944351
+        },
+        "EGTH": {
+            "Elevation": 127,
+            "Long": -0.31861877,
+            "Latt": 52.08666611
+        },
+        "EGTJ": {
+            "Elevation": 296,
+            "Long": -1.82192993,
+            "Latt": 52.63983917
+        },
+        "EGTK": {
+            "Elevation": 263,
+            "Long": -1.32000732,
+            "Latt": 51.83694458
+        },
+        "EGTL": {
+            "Elevation": 364,
+            "Long": -1.09672546,
+            "Latt": 52.78534698
+        },
+        "EGTM": {
+            "Elevation": 346,
+            "Long": -5.22845459,
+            "Latt": 50.2850647
+        },
+        "EGTN": {
+            "Elevation": 565,
+            "Long": -1.43096924,
+            "Latt": 51.9312439
+        },
+        "EGTO": {
+            "Elevation": 426,
+            "Long": 0.5027771,
+            "Latt": 51.35194397
+        },
+        "EGTP": {
+            "Elevation": 330,
+            "Long": -5.17926025,
+            "Latt": 50.33014297
+        },
+        "EGTQ": {
+            "Elevation": 504,
+            "Long": -3.15579224,
+            "Latt": 50.69786453
+        },
+        "EGTR": {
+            "Elevation": 332,
+            "Long": -0.32582092,
+            "Latt": 51.6558342
+        },
+        "EGTS": {
+            "Elevation": 278,
+            "Long": 0.22418213,
+            "Latt": 52.00764084
+        },
+        "EGTT": {
+            "Elevation": 272,
+            "Long": 0.67727661,
+            "Latt": 52.77949524
+        },
+        "EGTU": {
+            "Elevation": 839,
+            "Long": -3.23471069,
+            "Latt": 50.86000061
+        },
+        "EGTV": {
+            "Elevation": 851,
+            "Long": -4.14543152,
+            "Latt": 50.59243774
+        },
+        "EGTW": {
+            "Elevation": 250,
+            "Long": -2.01319885,
+            "Latt": 51.63199997
+        },
+        "EGTX": {
+            "Elevation": 245,
+            "Long": -0.3303833,
+            "Latt": 51.03245544
+        },
+        "EGTY": {
+            "Elevation": 841,
+            "Long": -4.11322021,
+            "Latt": 55.67995071
+        },
+        "EGTZ": {
+            "Elevation": 30,
+            "Long": 0.00054932,
+            "Latt": 53.13704681
+        },
+        "EGUA": {
+            "Elevation": 83,
+            "Long": 1.12339783,
+            "Latt": 52.94779968
+        },
+        "EGUB": {
+            "Elevation": 203,
+            "Long": -1.09584045,
+            "Latt": 51.61503983
+        },
+        "EGUC": {
+            "Elevation": 165,
+            "Long": -0.89160156,
+            "Latt": 53.11886597
+        },
+        "EGUD": {
+            "Elevation": 231,
+            "Long": -1.31581116,
+            "Latt": 51.68909454
+        },
+        "EGUE": {
+            "Elevation": 10,
+            "Long": 0.11305237,
+            "Latt": 52.81403732
+        },
+        "EGUF": {
+            "Elevation": 784,
+            "Long": -3.09802246,
+            "Latt": 50.90256882
+        },
+        "EGUG": {
+            "Elevation": 351,
+            "Long": -1.67417908,
+            "Latt": 51.60602188
+        },
+        "EGUH": {
+            "Elevation": 763,
+            "Long": -3.53004456,
+            "Latt": 50.95734024
+        },
+        "EGUI": {
+            "Elevation": 44,
+            "Long": -4.0750885,
+            "Latt": 52.61222839
+        },
+        "EGUJ": {
+            "Elevation": 378,
+            "Long": -1.43969727,
+            "Latt": 51.84718704
+        },
+        "EGUK": {
+            "Elevation": 478,
+            "Long": -1.38417053,
+            "Latt": 54.76677704
+        },
+        "EGUL": {
+            "Elevation": 31,
+            "Long": 0.5610199,
+            "Latt": 52.40941238
+        },
+        "EGUM": {
+            "Elevation": 299,
+            "Long": 0.65930176,
+            "Latt": 51.99045181
+        },
+        "EGUN": {
+            "Elevation": 32,
+            "Long": 0.48640442,
+            "Latt": 52.36193466
+        },
+        "EGUO": {
+            "Elevation": 569,
+            "Long": -2.27908325,
+            "Latt": 51.44107819
+        },
+        "EGUP": {
+            "Elevation": 208,
+            "Long": 0.76579285,
+            "Latt": 52.84596634
+        },
+        "EGUQ": {
+            "Elevation": 227,
+            "Long": -1.29460144,
+            "Latt": 54.25183868
+        },
+        "EGUS": {
+            "Elevation": 183,
+            "Long": -2.59658813,
+            "Latt": 51.12537766
+        },
+        "EGUT": {
+            "Elevation": 135,
+            "Long": -1.26556396,
+            "Latt": 53.62922287
+        },
+        "EGUU": {
+            "Elevation": 7,
+            "Long": 0.18302917,
+            "Latt": 52.33720398
+        },
+        "EGUV": {
+            "Elevation": 22,
+            "Long": 0.26799011,
+            "Latt": 52.33063507
+        },
+        "EGUW": {
+            "Elevation": 283,
+            "Long": 0.95541382,
+            "Latt": 52.12702942
+        },
+        "EGUX": {
+            "Elevation": 283,
+            "Long": -1.42808533,
+            "Latt": 52.58069992
+        },
+        "EGUY": {
+            "Elevation": 123,
+            "Long": -0.1078186,
+            "Latt": 52.35711288
+        },
+        "EGUZ": {
+            "Elevation": 83,
+            "Long": -4.93608093,
+            "Latt": 54.89775848
+        },
+        "EGVA": {
+            "Elevation": 285,
+            "Long": -1.78999329,
+            "Latt": 51.68351746
+        },
+        "EGVB": {
+            "Elevation": 619,
+            "Long": -3.70721436,
+            "Latt": 50.3651886
+        },
+        "EGVD": {
+            "Elevation": 152,
+            "Long": -2.09074402,
+            "Latt": 51.36361694
+        },
+        "EGVE": {
+            "Elevation": 297,
+            "Long": -0.2484436,
+            "Latt": 51.90434647
+        },
+        "EGVG": {
+            "Elevation": 75,
+            "Long": 1.40550232,
+            "Latt": 52.08979034
+        },
+        "EGVH": {
+            "Elevation": 240,
+            "Long": -2.78170776,
+            "Latt": 51.99006271
+        },
+        "EGVI": {
+            "Elevation": 37,
+            "Long": -0.72602844,
+            "Latt": 53.15938568
+        },
+        "EGVJ": {
+            "Elevation": 414,
+            "Long": -0.72962952,
+            "Latt": 51.91027832
+        },
+        "EGVK": {
+            "Elevation": 13,
+            "Long": 0.63192749,
+            "Latt": 51.44488144
+        },
+        "EGVL": {
+            "Elevation": 731,
+            "Long": -1.69418335,
+            "Latt": 51.86708832
+        },
+        "EGVM": {
+            "Elevation": 405,
+            "Long": -2.40124512,
+            "Latt": 52.66775894
+        },
+        "EGVN": {
+            "Elevation": 287,
+            "Long": -1.58294678,
+            "Latt": 51.74998474
+        },
+        "EGVO": {
+            "Elevation": 405,
+            "Long": -0.94281006,
+            "Latt": 51.23419189
+        },
+        "EGVP": {
+            "Elevation": 297,
+            "Long": -1.57025146,
+            "Latt": 51.14935684
+        },
+        "EGVR": {
+            "Elevation": 326,
+            "Long": -0.2033844,
+            "Latt": 51.94067764
+        },
+        "EGVS": {
+            "Elevation": 110,
+            "Long": -0.47380066,
+            "Latt": 50.92383957
+        },
+        "EGVT": {
+            "Elevation": 328,
+            "Long": 0.50869751,
+            "Latt": 51.97317123
+        },
+        "EGVU": {
+            "Elevation": 84,
+            "Long": -6.40028381,
+            "Latt": 54.38648987
+        },
+        "EGVV": {
+            "Elevation": 386,
+            "Long": -1.71841431,
+            "Latt": 52.23588181
+        },
+        "EGVW": {
+            "Elevation": 62,
+            "Long": 0.87289429,
+            "Latt": 51.69293976
+        },
+        "EGVX": {
+            "Elevation": 18,
+            "Long": 1.55091858,
+            "Latt": 52.71844101
+        },
+        "EGVY": {
+            "Elevation": 134,
+            "Long": -0.87034607,
+            "Latt": 53.28123856
+        },
+        "EGVZ": {
+            "Elevation": 387,
+            "Long": -4.66934204,
+            "Latt": 57.12956619
+        },
+        "EGWB": {
+            "Elevation": 320,
+            "Long": -1.70288086,
+            "Latt": 51.56189728
+        },
+        "EGWC": {
+            "Elevation": 272,
+            "Long": -2.30526733,
+            "Latt": 52.64053345
+        },
+        "EGWD": {
+            "Elevation": 164,
+            "Long": 1.26052856,
+            "Latt": 52.16841888
+        },
+        "EGWE": {
+            "Elevation": 154,
+            "Long": -0.30181885,
+            "Latt": 52.01954651
+        },
+        "EGWF": {
+            "Elevation": 65,
+            "Long": -0.67825317,
+            "Latt": 53.32161331
+        },
+        "EGWG": {
+            "Elevation": 178,
+            "Long": -2.60380554,
+            "Latt": 52.73724365
+        },
+        "EGWH": {
+            "Elevation": 45,
+            "Long": -0.99508667,
+            "Latt": 53.92276382
+        },
+        "EGWI": {
+            "Elevation": 30,
+            "Long": -3.20475769,
+            "Latt": 54.8824234
+        },
+        "EGWJ": {
+            "Elevation": 354,
+            "Long": -1.54814148,
+            "Latt": 52.16029739
+        },
+        "EGWK": {
+            "Elevation": 517,
+            "Long": -3.86294556,
+            "Latt": 50.8667984
+        },
+        "EGWL": {
+            "Elevation": 441,
+            "Long": -3.90548706,
+            "Latt": 50.77710724
+        },
+        "EGWM": {
+            "Elevation": 138,
+            "Long": -1.98617554,
+            "Latt": 50.88998795
+        },
+        "EGWN": {
+            "Elevation": 369,
+            "Long": -0.73782349,
+            "Latt": 51.79249954
+        },
+        "EGWO": {
+            "Elevation": 521,
+            "Long": -0.46217346,
+            "Latt": 54.1112175
+        },
+        "EGWP": {
+            "Elevation": 8,
+            "Long": 0.25193787,
+            "Latt": 53.12314606
+        },
+        "EGWQ": {
+            "Elevation": 224,
+            "Long": -1.78491211,
+            "Latt": 52.69250488
+        },
+        "EGWR": {
+            "Elevation": 302,
+            "Long": -0.00363159,
+            "Latt": 51.85035706
+        },
+        "EGWS": {
+            "Elevation": 28,
+            "Long": -2.91090393,
+            "Latt": 51.10723877
+        },
+        "EGWT": {
+            "Elevation": 708,
+            "Long": -1.8170166,
+            "Latt": 51.88885498
+        },
+        "EGWU": {
+            "Elevation": 126,
+            "Long": -0.41972351,
+            "Latt": 51.55277634
+        },
+        "EGWV": {
+            "Elevation": 124,
+            "Long": -2.62559509,
+            "Latt": 53.51305008
+        },
+        "EGWW": {
+            "Elevation": 367,
+            "Long": -0.12361145,
+            "Latt": 51.88287735
+        },
+        "EGWX": {
+            "Elevation": 107,
+            "Long": 0.95275879,
+            "Latt": 52.91255569
+        },
+        "EGWY": {
+            "Elevation": 207,
+            "Long": -3.0921936,
+            "Latt": 52.70209885
+        },
+        "EGWZ": {
+            "Elevation": 24,
+            "Long": -0.2532196,
+            "Latt": 53.2000351
+        },
+        "EGXA": {
+            "Elevation": 279,
+            "Long": -2.99084473,
+            "Latt": 52.80445099
+        },
+        "EGXB": {
+            "Elevation": 1081,
+            "Long": -3.03062439,
+            "Latt": 52.6689682
+        },
+        "EGXC": {
+            "Elevation": 24,
+            "Long": -0.16610718,
+            "Latt": 53.09316635
+        },
+        "EGXD": {
+            "Elevation": 114,
+            "Long": -1.41873169,
+            "Latt": 54.14022827
+        },
+        "EGXE": {
+            "Elevation": 132,
+            "Long": -1.53540039,
+            "Latt": 54.29252625
+        },
+        "EGXF": {
+            "Elevation": 315,
+            "Long": -2.69477844,
+            "Latt": 54.29327393
+        },
+        "EGXG": {
+            "Elevation": 335,
+            "Long": -2.38630676,
+            "Latt": 51.5682106
+        },
+        "EGXH": {
+            "Elevation": 168,
+            "Long": 0.77302551,
+            "Latt": 52.34282303
+        },
+        "EGXI": {
+            "Elevation": 259,
+            "Long": 0.08024597,
+            "Latt": 51.23318481
+        },
+        "EGXJ": {
+            "Elevation": 434,
+            "Long": -0.65350342,
+            "Latt": 52.73483276
+        },
+        "EGXK": {
+            "Elevation": 412,
+            "Long": -1.14405823,
+            "Latt": 51.73074722
+        },
+        "EGXL": {
+            "Elevation": 140,
+            "Long": 0.77215576,
+            "Latt": 52.9380455
+        },
+        "EGXM": {
+            "Elevation": 139,
+            "Long": -0.85046387,
+            "Latt": 53.3038559
+        },
+        "EGXN": {
+            "Elevation": 168,
+            "Long": -0.9911499,
+            "Latt": 52.96601868
+        },
+        "EGXO": {
+            "Elevation": 388,
+            "Long": -1.3711853,
+            "Latt": 52.98200989
+        },
+        "EGXP": {
+            "Elevation": 182,
+            "Long": -0.55081177,
+            "Latt": 53.30794525
+        },
+        "EGXQ": {
+            "Elevation": 295,
+            "Long": -2.18557739,
+            "Latt": 52.73299789
+        },
+        "EGXR": {
+            "Elevation": 262,
+            "Long": -0.43057251,
+            "Latt": 54.12747574
+        },
+        "EGXS": {
+            "Elevation": 278,
+            "Long": -0.27615356,
+            "Latt": 51.70611572
+        },
+        "EGXT": {
+            "Elevation": 273,
+            "Long": -0.47590637,
+            "Latt": 52.61305618
+        },
+        "EGXU": {
+            "Elevation": 48,
+            "Long": -1.25309753,
+            "Latt": 54.0493927
+        },
+        "EGXV": {
+            "Elevation": 124,
+            "Long": -2.93492126,
+            "Latt": 51.73500443
+        },
+        "EGXW": {
+            "Elevation": 230,
+            "Long": -0.52383423,
+            "Latt": 53.16616058
+        },
+        "EGXX": {
+            "Elevation": 709,
+            "Long": -0.74275208,
+            "Latt": 54.46104813
+        },
+        "EGXY": {
+            "Elevation": 208,
+            "Long": -0.91163635,
+            "Latt": 53.02331924
+        },
+        "EGXZ": {
+            "Elevation": 91,
+            "Long": -1.38163757,
+            "Latt": 54.20562744
+        },
+        "EGYA": {
+            "Elevation": 233,
+            "Long": -1.07646179,
+            "Latt": 51.78542328
+        },
+        "EGYB": {
+            "Elevation": 285,
+            "Long": 0.86672974,
+            "Latt": 52.16738129
+        },
+        "EGYC": {
+            "Elevation": 61,
+            "Long": 1.35762024,
+            "Latt": 52.75492477
+        },
+        "EGYD": {
+            "Elevation": 222,
+            "Long": -0.49275208,
+            "Latt": 53.02973175
+        },
+        "EGYE": {
+            "Elevation": 367,
+            "Long": -0.56031799,
+            "Latt": 52.96298218
+        },
+        "EGYF": {
+            "Elevation": 98,
+            "Long": -2.44802856,
+            "Latt": 51.41019821
+        },
+        "EGYG": {
+            "Elevation": 181,
+            "Long": 0.03715515,
+            "Latt": 53.19782639
+        },
+        "EGYH": {
+            "Elevation": 345,
+            "Long": -1.36514282,
+            "Latt": 52.20069504
+        },
+        "EGYJ": {
+            "Elevation": 172,
+            "Long": -1.1111145,
+            "Latt": 51.42669296
+        },
+        "EGYK": {
+            "Elevation": 446,
+            "Long": -1.36381531,
+            "Latt": 51.47188187
+        },
+        "EGYL": {
+            "Elevation": 472,
+            "Long": -2.0348053,
+            "Latt": 51.13338089
+        },
+        "EGYM": {
+            "Elevation": 76,
+            "Long": 0.55067444,
+            "Latt": 52.64840698
+        },
+        "EGYN": {
+            "Elevation": 311,
+            "Long": -0.69592285,
+            "Latt": 52.1221199
+        },
+        "EGYO": {
+            "Elevation": 282,
+            "Long": -2.61759949,
+            "Latt": 50.87985611
+        },
+        "EGYP": {
+            "Elevation": 233,
+            "Long": -58.44595337,
+            "Latt": -51.82269287
+        },
+        "EGYQ": {
+            "Elevation": 514,
+            "Long": -5.18884277,
+            "Latt": 57.57086563
+        },
+        "EGYR": {
+            "Elevation": 61,
+            "Long": -3.80845642,
+            "Latt": 57.83219147
+        },
+        "EGYS": {
+            "Elevation": 22,
+            "Long": -5.54737854,
+            "Latt": 56.56103516
+        },
+        "EGYT": {
+            "Elevation": 247,
+            "Long": -2.83374023,
+            "Latt": 56.65271378
+        },
+        "EGYU": {
+            "Elevation": 36,
+            "Long": -0.84846497,
+            "Latt": 53.08624649
+        },
+        "EGYV": {
+            "Elevation": 355,
+            "Long": -3.33081055,
+            "Latt": 56.19115067
+        },
+        "EGYW": {
+            "Elevation": 525,
+            "Long": -7.04374695,
+            "Latt": 54.57240295
+        },
+        "EGYX": {
+            "Elevation": 256,
+            "Long": -2.29562378,
+            "Latt": 53.27984238
+        },
+        "EGYY": {
+            "Elevation": 94,
+            "Long": 0.52693176,
+            "Latt": 51.17858887
+        },
+        "EGYZ": {
+            "Elevation": 26,
+            "Long": 0.69888306,
+            "Latt": 51.75170135
+        },
+        "EGZA": {
+            "Elevation": 167,
+            "Long": 1.00708008,
+            "Latt": 52.01867676
+        },
+        "EGZB": {
+            "Elevation": 24,
+            "Long": -2.79673767,
+            "Latt": 53.68854523
+        },
+        "EGZC": {
+            "Elevation": 381,
+            "Long": -2.30889893,
+            "Latt": 51.31157684
+        },
+        "EGZD": {
+            "Elevation": 249,
+            "Long": 0.556427,
+            "Latt": 51.99440765
+        },
+        "EGZE": {
+            "Elevation": 484,
+            "Long": -0.71276855,
+            "Latt": 52.82949448
+        },
+        "EGZF": {
+            "Elevation": 46,
+            "Long": -6.43804932,
+            "Latt": 54.45864487
+        },
+        "EGZG": {
+            "Elevation": 566,
+            "Long": -6.04579163,
+            "Latt": 54.09357452
+        },
+        "EGZH": {
+            "Elevation": 177,
+            "Long": 1.22634888,
+            "Latt": 52.3097229
+        },
+        "EGZI": {
+            "Elevation": 203,
+            "Long": -4.23530579,
+            "Latt": 53.15750504
+        },
+        "EGZK": {
+            "Elevation": 186,
+            "Long": 0.63209534,
+            "Latt": 51.66988373
+        },
+        "EGZL": {
+            "Elevation": 876,
+            "Long": -3.89115906,
+            "Latt": 57.10223007
+        },
+        "EGZM": {
+            "Elevation": 466,
+            "Long": -2.84008789,
+            "Latt": 57.07470322
+        },
+        "EGZN": {
+            "Elevation": 670,
+            "Long": -1.54283142,
+            "Latt": 51.34088516
+        },
+        "EGZP": {
+            "Elevation": 11,
+            "Long": -4.02340698,
+            "Latt": 57.86907959
+        },
+        "EGZQ": {
+            "Elevation": 51,
+            "Long": -3.14315796,
+            "Latt": 58.82572937
+        },
+        "EGZR": {
+            "Elevation": 110,
+            "Long": -2.05345154,
+            "Latt": 60.12197495
+        },
+        "EGZT": {
+            "Elevation": 76,
+            "Long": -1.6932373,
+            "Latt": 60.32167435
+        },
+        "EGZU": {
+            "Elevation": 97,
+            "Long": -4.42059326,
+            "Latt": 54.37150574
+        },
+        "EGZV": {
+            "Elevation": 455,
+            "Long": -4.67037964,
+            "Latt": 51.17049026
+        },
+        "EGZW": {
+            "Elevation": 313,
+            "Long": -4.51275635,
+            "Latt": 54.18218994
+        },
+        "EGZX": {
+            "Elevation": 269,
+            "Long": -4.98088074,
+            "Latt": 50.50418091
+        },
+        "EGZY": {
+            "Elevation": 441,
+            "Long": -3.80136108,
+            "Latt": 50.22382355
+        },
+        "EGZZ": {
+            "Elevation": 425,
+            "Long": -3.45658875,
+            "Latt": 56.21647263
+        }
+    }
+}

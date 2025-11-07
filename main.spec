@@ -6,9 +6,7 @@ a = Analysis(
     pathex=['D:/My Stuff/Coding Projects/Vatsim-FPL'],
     binaries=[],
     datas=[
-        ('data.json', '.'),
-        ('UK Airports Database.json', '.'),
-        ('LISTO re_routes.json', '.')
+        ('Airports', 'Airports'),
     ],
     hiddenimports=[],
     hookspath=[],
@@ -31,7 +29,7 @@ exe = EXE(
     bootloader_ignore_signals=False,
     strip=False,
     upx=True,
-    console=False,
+    console=True,
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=None,

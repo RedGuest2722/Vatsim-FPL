@@ -1,7 +1,18 @@
 @echo off
-if exist "D:\My Stuff\Coding Projects\Vatsim-FPL\Vatsim FPL Checker" (
-    rmdir "D:\My Stuff\Coding Projects\Vatsim-FPL\Vatsim FPL Checker")
+setlocal
 
-pyinstaller --clean --distpath "D:\My Stuff\Coding Projects\Vatsim-FPL\Vatsim FPL Checker\" main.spec
-rmdir "D:\My Stuff\Coding Projects\Vatsim-FPL\build" /S /Q
+set "BAT_DIR=%~dp0"
+set "DIST_DIR=%BAT_DIR%/Vatsim FPL Checker"
+
+
+echo Building with PyInstaller...
+pyinstaller --clean --distpath "%DIST_DIR%" main.spec
+
+
+echo Cleaning up build artifacts...
+if exist "%BAT_DIR%/build" (
+    rmdir /S /Q "%BAT_DIR%/build"
+)
+
 echo Done.
+pause
