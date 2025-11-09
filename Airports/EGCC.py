@@ -1,5 +1,5 @@
 from geopy.distance import geodesic
-import json, os, sys, tkinter as tk
+import json, tkinter as tk
 
 RUNWAYS: dict = {
     "23R": [
@@ -212,123 +212,103 @@ DATA: dict = {
     "Latt": 53.35388947
 }
 
-def __init__(runway: tk.StringVar, root: tk.Tk):
+def __init__(runway: tk.StringVar, root: tk.Tk, resource_path):
     self = type("data", (), {})()
     self.runway = runway
     self.root = root
+    self.resource_path = resource_path
 
     return self
 
-def resource_path(relative_path):
-    """ Get absolute path to resource, works for dev and for PyInstaller """
-    if getattr(sys, 'frozen', False):
-        # Running as a PyInstaller bundle
-        return os.path.join(os.path.dirname(sys.executable), relative_path)
-    else:
-        # Running as a script
-        return os.path.join(os.path.dirname(os.path.abspath(__file__)), relative_path)
-
-def checkFPL(self, pilot: dict):
-
-    #Checks runway has been chosen and the flight is departing from the user airport
-    if pilot["flight_plan"]["flight_rules"] == "I":
-        pilotRoute: str = pilot["flight_plan"]["route"]
-        # Remove FL and Coords e.g(F290N5132)
-        while True:
-            if pilotRoute.find("/") > -1:
-                slashBeginning = pilotRoute.find("/")
-                slashEnding = pilotRoute.find(" ", slashBeginning)
-                pilotRoute = pilotRoute[:slashBeginning] + pilotRoute[slashEnding:]
-            else:
-                break
-        
-        # Remove departure airport
-        if pilotRoute.find("EGCC") > -1:
-            pilotRoute =  pilotRoute[:pilotRoute.find("EGCC")] + pilotRoute[pilotRoute.find(" ", pilotRoute.find("EGCC")):]
-        
-        # Remove SID
-        for _, rwy in RUNWAYS.items():
-            for sid in rwy:
-                if pilotRoute.find(sid) > 0:
-                    pilotRoute = f'{pilotRoute[:pilotRoute.find(sid)]} {pilotRoute[pilotRoute.find(" ", pilotRoute.find(sid)):]}'
+def checkRoute(self, pilot: dict):
+    pilotRoute: str = pilot["flight_plan"].get("route")
+    
+    # Remove SID
+    for _, rwy in RUNWAYS.items():
+        for sid in rwy:
+            if pilotRoute.find(sid) > 0:
+                pilotRoute = f'{pilotRoute[:pilotRoute.find(sid)]} {pilotRoute[pilotRoute.find(" ", pilotRoute.find(sid)):]}'
+            
+    invalid = True
+    # See if FPL has a valid departure SID
+    for sid in RUNWAYS[self.runway.get()]:
+        sid: str
+        #check to find a valid SID for given route
+        if pilotRoute.find(sid.split(" ")[0]) > -1:
+            invalid = False
+            #Wake category check
+            if self.runway.get().find("23") > -1:
+                listo_sanba: bool|str = False
+                with open(self.resource_path(r"Airports/EGCC.json"), "r") as file:
+                    aircrafts: dict = json.load(file)
                 
-        invalid = True
-        # See if FPL has a valid departure SID
-        for sid in RUNWAYS[self.runway.get()]:
-            sid: str
-            #check to find a valid SID for given route
-            if pilotRoute.find(sid.split(" ")[0]) > -1:
-                invalid = False
-                #Wake category check
-                if self.runway.get().find("23") > -1:
-                    listo_sanba: bool|str = False
-                    with open(resource_path(r"Airports/EGCC.json"), "r") as file:
-                        aircrafts: dict = json.load(file)
+                
+                listo_sanba = aircrafts.get(pilot["flight_plan"].get("aircraft_short"), False)
+                
+                if listo_sanba:
+                    if pilotRoute.find("SANBA") > -1 or pilotRoute.find("LISTO") > -1:
+                        if pilotRoute.find(listo_sanba) < 0:
+                            for lsSID in RUNWAYS[self.runway.get()]:
+                                if lsSID.find(listo_sanba) > -1:
+                                    return {"callsign": pilot["callsign"], "type": "RR", "Route": REROUTES[listo_sanba], "SID": lsSID, "colour": "#ffA500"}
+                else:
+                    lsStringVar: tk.StringVar = tk.StringVar(master=self.root, value="False")
+                    lsWindow: tk.Toplevel = tk.Toplevel(master=self.root, bg="#000000")
+                    lsWindow.attributes("-topmost", True)
+                    lsFrame: tk.Frame = tk.Frame(master=lsWindow, bg="#000000")
+                    lsFrame.pack(anchor="center", pady=10)
+                    lsLabel1: tk.Label = tk.Label(master=lsFrame, text=f'Is {pilot["flight_plan"]["aircraft_short"]} a ', fg="#ffffff", bg="#808080")
+                    lsLabel1.pack(side="left")
+                    listoButton: tk.Button = tk.Button(master=lsFrame, text="LISTO", command=lambda:lsStringVar.set("LISTO"))
+                    listoButton.pack(side="left", padx=5)
+                    lsLabel2: tk.Label = tk.Label(master=lsFrame, text=f'or a', fg="#ffffff", bg="#808080")
+                    lsLabel2.pack(side="left", padx=5)
+                    sanbaButton: tk.Button = tk.Button(master=lsFrame, text="SANBA", command=lambda:lsStringVar.set("SANBA"))
+                    sanbaButton.pack(side="left", padx=5)
+                    lsLabel3: tk.Label = tk.Label(master=lsFrame, text=f'departure.', fg="#ffffff", bg="#808080")
+                    lsLabel3.pack(side="left", padx=5)
+
+                    while lsStringVar.get() == "False":
+                        self.root.update()
                     
-                    while True:
-                        listo_sanba = aircrafts.get(pilot["flight_plan"]["aircraft_short"], False)
+                    lsWindow.destroy()
+                    aircrafts[pilot["flight_plan"]["aircraft_short"]] = lsStringVar.get()
+                    
+                    with open(self.resource_path(r"Airports/EGCC.json"), "w") as file: 
+                        json.dump(aircrafts, file, indent=4)
+                    
+                    if pilotRoute.find("SANBA") > -1 or pilotRoute.find("LISTO") > -1:
+                        if pilotRoute.find(lsStringVar.get()) < 0:
+                            for lsSID in RUNWAYS[self.runway.get()]:
+                                if lsSID.find(lsStringVar.get()) > -1:
+                                    return {"callsign": pilot["callsign"], "type": "RR", "Route": REROUTES[lsStringVar.get()], "SID": lsSID, "colour": "#ffA500"}
                         
-                        if listo_sanba:
-                            if pilot["flight_plan"]["route"].find(listo_sanba) > 0:
-                                for lsSID in RUNWAYS[self.runway.get()]:
-                                    if lsSID.find(listo_sanba) > -1:
-                                        return {"callsign": pilot["callsign"], "type": "RR", "Route": REROUTES[listo_sanba], "SID": lsSID, "colour": "#ffA500"}
-                            break
-
-                        else:
-                            lsStringVar: tk.StringVar = tk.StringVar(master=self.root, value="False")
-                            lsWindow: tk.Toplevel = tk.Toplevel(master=self.root, bg="#000000")
-                            lsWindow.attributes("-topmost", True)
-                            lsFrame: tk.Frame = tk.Frame(master=lsWindow, bg="#000000")
-                            lsFrame.pack(anchor="center", pady=10)
-                            lsLabel1: tk.Label = tk.Label(master=lsFrame, text=f'Is {pilot["flight_plan"]["aircraft_short"]} a ', fg="#ffffff", bg="#808080")
-                            lsLabel1.pack(side="left")
-                            listoButton: tk.Button = tk.Button(master=lsFrame, text="LISTO", command=lambda:lsStringVar.set("LISTO"))
-                            listoButton.pack(side="left", padx=5)
-                            lsLabel2: tk.Label = tk.Label(master=lsFrame, text=f'or a', fg="#ffffff", bg="#808080")
-                            lsLabel2.pack(side="left", padx=5)
-                            sanbaButton: tk.Button = tk.Button(master=lsFrame, text="SANBA", command=lambda:lsStringVar.set("SANBA"))
-                            sanbaButton.pack(side="left", padx=5)
-                            lsLabel3: tk.Label = tk.Label(master=lsFrame, text=f'departure.', fg="#ffffff", bg="#808080")
-                            lsLabel3.pack(side="left", padx=5)
-
-                            while lsStringVar.get() == "False":
-                                self.root.update()
-                            
-                            lsWindow.destroy()
-                            aircrafts[pilot["flight_plan"]["aircraft_short"]] = lsStringVar.get()
-                            
-                            with open(resource_path(r"Airports/EGCC.json"), "w") as file: 
-                                json.dump(aircrafts, file, indent=4)
-                        
-        # if FPL departure invalid find correct departure with re-route
-        if invalid:
-            filed = pilotRoute[:pilotRoute.find(" ")]
-            # Checking for ASMIM (2 options for re-route)
-            if filed == "ASMIM":
-                if pilotRoute.find("WAL") > -1:
-                    Reroute = {"Route": REROUTES["ASMIM"]["EKLAD"]}
-                else:
-                    Reroute = {"Route": REROUTES["ASMIM"]["KUXEM"]}
+    # if FPL departure invalid find correct departure with re-route
+    if invalid:
+        filed = pilotRoute[:pilotRoute.find(" ")]
+        # Checking for ASMIM (2 options for re-route)
+        if filed == "ASMIM":
+            if pilotRoute.find("WAL") > -1:
+                Reroute = {"Route": REROUTES["ASMIM"]["EKLAD"]}
             else:
-                Reroute = {"Route": REROUTES[filed]}
-            
-            # Assign correct SID
-            for sid in RUNWAYS[self.runway.get()]["SIDS"]:
-                if sid.find(Reroute["Route"].split()[0]) > -1:
-                    Reroute["SID"] = sid
-            
-            # Apply re-route to FPL
-            RerouteList = Reroute["Route"].split(" ")
-            if pilotRoute.find(RerouteList[2]) > -1:
-                return {"callsign": pilot.get("callsign"), **Reroute, "type": "RR", "colour": "#ffA500"}
-            else:
-                # More complicated re-route required
-                if pilotRoute.find(RerouteList[1]) > -1:
-                    return {"callsign": pilot["callsign"], "type": "RR", "Route": f"{RerouteList[0]} {RerouteList[1]} {pilotRoute[pilotRoute.find(' ', pilotRoute.find(RerouteList[1])):pilotRoute.find(' ', pilotRoute.find(RerouteList[1])+7)]}","SID": Reroute["SID"], "colour": "#ffA500"}
-                else:
-                    return {"callsign": pilot["callsign"], "SRD": "Needs SRD", "colour": "#ff0000"}
+                Reroute = {"Route": REROUTES["ASMIM"]["KUXEM"]}
         else:
-            return False
+            Reroute = {"Route": REROUTES[filed]}
+        
+        # Assign correct SID
+        for sid in RUNWAYS[self.runway.get()]:
+            if sid.find(Reroute["Route"].split()[0]) > -1:
+                Reroute["SID"] = sid
+        
+        # Apply re-route to FPL
+        RerouteList = Reroute["Route"].split(" ")
+        if pilotRoute.find(RerouteList[2]) > -1:
+            return {"callsign": pilot.get("callsign"), **Reroute, "type": "RR", "colour": "#ffA500"}
+        else:
+            # More complicated re-route required
+            if pilotRoute.find(RerouteList[1]) > -1:
+                return {"callsign": pilot["callsign"], "type": "RR", "Route": f"{RerouteList[0]} {RerouteList[1]} {pilotRoute[pilotRoute.find(' ', pilotRoute.find(RerouteList[1])):pilotRoute.find(' ', pilotRoute.find(RerouteList[1])+7)]}","SID": Reroute.get("SID"), "colour": "#ffA500"}
+            else:
+                return {"callsign": pilot["callsign"], "type": "FPL", "colour": "#ff0000"}
     else:
         return False

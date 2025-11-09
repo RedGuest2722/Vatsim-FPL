@@ -21,20 +21,22 @@ def selectRunway(self, selectRunwayButton: tk.Button):
 #end
 
 # Inside Airports/__init__.py
-def loadAirport(userLocation: tk.StringVar, root: tk.Tk, runway: tk.StringVar):
+def loadAirport(userLocation: tk.StringVar, root: tk.Tk, runway: tk.StringVar, resource_path):
     self = type("AirportModule", (), {})()
     self.runway = runway
-    self.airport = importlib.import_module(f"Airports.{userLocation.get()}")
     self.root = root
+    self.airport = importlib.import_module(f"Airports.{userLocation.get()}")
+    
     
     # Call the __init__ function from the airport module
     if hasattr(self.airport, "__init__"):
-        self.airport.__init__(self.runway, self.root)
+        self.airport.__init__(self.runway, self.root, resource_path)
 
     # Attach required attributes and functions
     self.DATA = getattr(self.airport, "DATA", {})
     self.RUNWAYS = getattr(self.airport, "RUNWAYS", {})
-    self.checkFPL = lambda pilot: self.airport.checkFPL(self, pilot)
+    self.checkRoute = lambda pilot: self.airport.checkRoute(self, pilot)
+    self.resource_path = resource_path
 
     selectRunwayButton = tk.Button(master=root, width=20, font=(20), command=lambda:selectRunway(self, selectRunwayButton), text="Select runway", fg="#ffffff", bg="#808080")
     selectRunwayButton.pack(side="top", pady=5)

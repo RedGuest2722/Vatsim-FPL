@@ -1,12 +1,5 @@
-import tkinter as tk
-import requests
-import queue
+import tkinter as tk, pyperclip as clip, requests, queue, time, os, sys, math
 from geopy.distance import geodesic
-import json
-import time
-import os
-import sys
-import pyperclip as clip
 from Airports import loadAirport
 
 def resource_path(relative_path):
@@ -21,7 +14,7 @@ def resource_path(relative_path):
 
 #Initiate Tkinter
 root: tk.Tk = tk.Tk()
-root.geometry("1500x700")
+root.geometry("700x400")
 root.title("Vatsim UK FPL Checker")
 root.configure(bg="#000000")
 
@@ -43,7 +36,7 @@ aircraftErrored: tk.IntVar = tk.IntVar(master=root, value=0)
 #Loads Manchester Data
 try:
     with open(resource_path(r"cid.txt"), "r") as file:
-        cidStr.set(file.readlines())
+        cidStr.set(file.readlines()[0])
 except:
 
     exitButton: tk.Button = tk.Button(master=root, command=lambda:endProgram(), text="End Program", width=15, font=(20), fg="#ffffff", bg="#808080", anchor="s")
@@ -69,12 +62,17 @@ def endProgram():
     root.destroy()
     sys.exit()
 
+def quarterTime():
+    secsNow: int = int(time.strftime("%S"))
+
+    return 1000*((math.ceil(secsNow/15)*15)-secsNow)
+
 #Functions
 def vatsimDataFunc(vatsimDataJson: queue.Queue, airportPilots: queue.Queue, airportModule: loadAirport, reRouteFrame: tk.Frame, updatedTimeLabel: tk.Label, userLocation: tk.StringVar, pilotFrames: list):
     '''
     MAIN THREAD  
     -
-    Fetches new VATSIM data every 5 seconds.
+    Fetches new VATSIM data every 15 seconds.
     '''
 
     #Get vatsim pilots
@@ -84,7 +82,7 @@ def vatsimDataFunc(vatsimDataJson: queue.Queue, airportPilots: queue.Queue, airp
     
     airportPilots: list = []
     
-    #remove any pilots that have left the ATZ
+    #remove any pilots that have left the ATZ or disconnected
     
     newPilotFrame: list = []
     for pilotFrame in pilotFrames:
@@ -107,32 +105,61 @@ def vatsimDataFunc(vatsimDataJson: queue.Queue, airportPilots: queue.Queue, airp
         pilotError = 0
         for pilot in pilots:
             if geodesic((airportModule.DATA["Latt"], airportModule.DATA["Long"]), (pilot['latitude'], pilot['longitude'])).nautical <= 2 and pilot["altitude"] <= (airportModule.DATA["Elevation"] + 1000):
-                if pilot.get("flight_plan"):
-                    if pilot["flight_plan"].get("departure") == userLocation.get():
+                if pilot["flight_plan"]:
+                    if pilot["flight_plan"]["departure"] == userLocation.get():
                         pilotCount += 1
-                        result = airportModule.checkFPL(pilot)
-                        if result:
-                            airportPilots.append(result)
-                            pilotError += 1
+                        if pilot["flight_plan"]["flight_rules"] == "I":
+                            pilotRoute: str = pilot["flight_plan"]["route"]
+                            # Remove FL and Coords e.g(F290N5132)
+                            while True:
+                                if pilotRoute.find("/") > -1:
+                                    slashBeginning = pilotRoute.find("/")
+                                    slashEnding = pilotRoute.find(" ", slashBeginning)
+                                    pilotRoute = pilotRoute[:slashBeginning] + pilotRoute[slashEnding:]
+                                else:
+                                    break
+                            
+                            # Remove departure airport
+                            if pilotRoute.find(userLocation.get()) > -1:
+                                pilotRoute =  pilotRoute[:pilotRoute.find(userLocation.get())] + pilotRoute[pilotRoute.find(" ", pilotRoute.find(userLocation.get())):]
+
+                            pilot["flight_plan"]["route"] = pilotRoute
+                        
+                            result = airportModule.checkRoute(pilot)
+                            if result:
+                                airportPilots.append(result)
+                                pilotError += 1
+                            else:
+                                for pilotFrame in pilotFrames:
+                                    if pilotFrame["name"] == pilot["callsign"]:
+                                        pilotFrame["frame"].destroy()
+                        else:
+                            airportPilots.append({"callsign": pilot["callsign"], "type": "VFR", "colour": "#00ff00"})
+                else:
+                    airportPilots.append({"callsign": pilot["callsign"], "type": "FPL", "colour": "#ff0000"})
+                    pilotError += 1
+                    pilotCount += 1
+
         
         aircraftCounted.set(pilotCount)
         aircraftErrored.set(pilotError)
 
 
     for pilotReRoute in airportPilots:
-        callsign = pilotReRoute["callsign"]
+        pilotReRoute: dict
+        callsign: str = pilotReRoute["callsign"]
         buttoned = False
         for buttonedCallsign in pilotFrames:
-            if buttonedCallsign.get("name") == callsign:
+            if buttonedCallsign["name"] == callsign:
                 buttoned = True
                 buttonedCallsign["labelCall"].configure(fg=pilotReRoute["colour"])
-                if pilotReRoute.get("type") == "RR":
+                if pilotReRoute["type"] == "RR":
                     try:
                         buttonedCallsign["labelMsg"].forget()
                     except:
                         pass
-                    buttonedCallsign["sid"].configure(text=pilotReRoute["SID"], command=lambda:clip.copy(pilotReRoute["Route"]))
-                    buttonedCallsign["route"].configure(text="Re-Route", command=lambda:clip.copy(f'{pilotReRoute["SID"].replace(" ", "")} departure. Runway {runwayInUse.get()}. Re-Route: {pilotReRoute["Route"]} Then as filed.'))
+                    buttonedCallsign["sid"].configure(text=f'ATC: {pilotReRoute.get("SID")}', command=lambda:clip.copy(pilotReRoute["Route"]))
+                    buttonedCallsign["route"].configure(text="Pilot", command=lambda:clip.copy(f'{pilotReRoute["SID"]} departure. Runway {runwayInUse.get()}. Re-Route: {pilotReRoute["Route"]} Then as filed.'))
                     buttonedCallsign["sid"].pack(side="left")
                     buttonedCallsign["route"].pack(side="left")
                 else:
@@ -159,14 +186,15 @@ def vatsimDataFunc(vatsimDataJson: queue.Queue, airportPilots: queue.Queue, airp
             pilotReRoute["route"] = tk.Button(pilotReRoute["frame"], font=(20), fg="#ffffff", bg="#808080")
             pilotReRoute["labelMsg"] = tk.Label(pilotReRoute["frame"], font=(20), fg="#ffffff", bg="#808080")
             
-            if pilotReRoute.get("type") == "RR":
+            if pilotReRoute["type"] == "RR":
                 pilotReRoute["sid"].configure(text=pilotReRoute["SID"], command=lambda:clip.copy(pilotReRoute["Route"]))
                 pilotReRoute["route"].configure(text="Re-Route", command=lambda:clip.copy(f'{pilotReRoute["SID"].replace(" ", "")} departure. Runway {runwayInUse.get()}. Re-Route: {pilotReRoute["Route"]} Then as filed.'))
-                
+                ## ^^ Fix this copy thing as not working properly.
+
                 pilotReRoute["sid"].pack(side="left", padx=5)
                 pilotReRoute["route"].pack(side="left", padx=5)
             else:
-                pilotReRoute["labelMsg"] = tk.Label(pilotReRoute.get("frame"), text="No flight Plan" if pilotReRoute.get("type") == "FPL" else "VFR Traffic" if pilotReRoute.get("type") == "VFR" else "As Filed" if pilotReRoute.get("type") == "AF" else "Needs SRD", font=(20), fg=pilotReRoute["colour"], bg="#000000")
+                pilotReRoute["labelMsg"] = tk.Label(pilotReRoute["frame"], text="No flight Plan" if pilotReRoute["type"] == "FPL" else "VFR Traffic" if pilotReRoute["type"] == "VFR" else "As Filed" if pilotReRoute["type"] == "AF" else "Needs SRD", font=(20), fg=pilotReRoute["colour"], bg="#000000")
                 pilotReRoute["labelMsg"].pack(side="left")
             
             
@@ -175,7 +203,7 @@ def vatsimDataFunc(vatsimDataJson: queue.Queue, airportPilots: queue.Queue, airp
     
     updatedTimeLabel.configure(text=f'Updated: {time.strftime("%H:%M:%S", time.gmtime())}z ({userLocation.get()[2:]} | {airportModule.runway.get()})')
 
-    root.after(ms=5000, func=lambda:vatsimDataFunc(vatsimDataJson, airportPilots, airportModule, reRouteFrame, updatedTimeLabel, userLocation, pilotFrames))
+    root.after(quarterTime(), func=lambda:vatsimDataFunc(vatsimDataJson, airportPilots, airportModule, reRouteFrame, updatedTimeLabel, userLocation, pilotFrames))
 
 def timeUpdate(localTimeLabel: tk.Label):
     localTimeLabel.configure(text=f'Errors {aircraftErrored.get()}/{aircraftCounted.get()} | Current: {time.strftime("%H:%M:%S", time.gmtime())}z')
@@ -187,7 +215,7 @@ location = False
 controllers = requests.get("https://data.vatsim.net/v3/vatsim-data.json").json()['controllers']
 for controller in controllers:
     if str(controller['cid']) == cidStr.get():
-        if str(controller['cid']).find("OBS") < 0:
+        if str(controller['callsign']).find("OBS") < 0:
             userLocation.set(controller['callsign'][:4])
             location = True
     
@@ -206,13 +234,13 @@ if not location:
     userLocation.set(userLocation.get().upper())
 
 
-airportModule = loadAirport(userLocation, root, runwayInUse)
+airportModule = loadAirport(userLocation, root, runwayInUse, resource_path)
 
 #Tkinter start buttons
 bottomBanner: tk.Frame = tk.Frame(master=root, bg="#000000")
 bottomBanner.pack(side="bottom", pady=5, fill="x")
 
-updatedTimeLabel: tk.Label = tk.Label(master=bottomBanner, width=30, font=(20), anchor="w", fg="#ffffff", bg="#000000")
+updatedTimeLabel: tk.Label = tk.Label(master=bottomBanner, width=25, font=(20), anchor="w", fg="#ffffff", bg="#000000")
 updatedTimeLabel.pack(side="left", padx=10)
 
 bottomBannercenter: tk.Frame = tk.Frame(master=bottomBanner, bg="#000000")
@@ -221,7 +249,7 @@ bottomBannercenter.pack(side="left", expand=True)
 endProgramButton: tk.Button = tk.Button(master=bottomBannercenter, command=lambda:endProgram(), text="End Program", width=15, font=(20), fg="#ffffff", bg="#808080")
 endProgramButton.pack()
 
-localTimeLabel: tk.Label = tk.Label(master=bottomBanner, width=30, font=(20), anchor="e", fg="#ffffff", bg="#000000")
+localTimeLabel: tk.Label = tk.Label(master=bottomBanner, width=25, font=(20), anchor="e", fg="#ffffff", bg="#000000")
 localTimeLabel.pack(side="right", padx=10)
 
 
@@ -231,8 +259,5 @@ root.attributes("-topmost", True)
 
 #Start Threads
 timeUpdate(localTimeLabel)
-
 vatsimDataFunc(vatsimDataJson, airportPilots, airportModule, reRouteFrame, updatedTimeLabel, userLocation, pilotFrames)
-
-root.attributes("-topmost", False)
 root.mainloop()
