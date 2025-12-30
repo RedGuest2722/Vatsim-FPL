@@ -1,6 +1,6 @@
-import tkinter as tk, pyperclip as clip, requests, queue, time, os, sys, math
+import tkinter as tk, requests, time, os, sys, math
 from geopy.distance import geodesic
-from Airports import loadAirport
+import Airports
 
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
@@ -10,254 +10,285 @@ def resource_path(relative_path):
     else:
         # Running as a script
         return os.path.join(os.path.dirname(os.path.abspath(__file__)), relative_path)
-
+#end
 
 #Initiate Tkinter
 root: tk.Tk = tk.Tk()
-root.geometry("700x400")
 root.title("Vatsim UK FPL Checker")
+root.geometry("900x600")
 root.configure(bg="#000000")
 
-
 #Vars
-vatsimDataJson: queue.Queue = queue.Queue()
-airportPilots: queue.Queue = queue.Queue()
-endThreads: queue.Queue = queue.Queue()
-endThreads.put(item=False)
-timeLocal: queue.Queue = queue.Queue()
 runwayInUse: tk.StringVar = tk.StringVar(master=root, value="")
-userLocation: tk.StringVar = tk.StringVar(master=root)
-pilotFrames: list = []
+userLocation: tk.StringVar = tk.StringVar(master=root, value="")
+pilotFrames: dict = {}
 cidStr: tk.StringVar = tk.StringVar()
 aircraftCounted: tk.IntVar = tk.IntVar(master=root, value=0)
 aircraftErrored: tk.IntVar = tk.IntVar(master=root, value=0)
 
-    #file vars
+
 #Loads Manchester Data
 try:
     with open(resource_path(r"cid.txt"), "r") as file:
         cidStr.set(file.readlines()[0])
+    #end
 except:
-
-    exitButton: tk.Button = tk.Button(master=root, command=lambda:endProgram(), text="End Program", width=15, font=(20), fg="#ffffff", bg="#808080", anchor="s")
-    exitButton.pack(pady=10)
     cidWindow: tk.Toplevel = tk.Toplevel(master=root, bg="#000000")
     cidWindow.attributes("-topmost", True)
-    cidLabel: tk.Label = tk.Label(master=cidWindow, bg="#000000", fg="#ffffff", text="Enter your vatsim CID:")
-    cidLabel.pack(pady=10)
-    
-    cidEntry: tk.Entry = tk.Entry(master=cidWindow, bg="#808080", fg="#ffffff", textvariable=cidStr)
-    cidEntry.pack(pady=5)
-    
+    cidLabel: tk.Label = tk.Label(master=cidWindow, font=(8), bg="#000000", fg="#ffffff", text="Enter your vatsim CID:")
+    cidLabel.pack(pady=10, side="top")
+    cidEntry: tk.Entry = tk.Entry(master=cidWindow, font=(8), bg="#808080", fg="#ffffff", textvariable=cidStr)
+    cidEntry.pack(pady=5, side="top")
     while not len(cidStr.get()) == 7:
         root.update()
-    
-    
+    #end
     with open(resource_path(r"cid.txt"), "w") as file:
         file.write(cidStr.get())
+    #end
     cidWindow.destroy()
-    exitButton.destroy()
+#end
 
 def endProgram():
     root.destroy()
     sys.exit()
+#end
 
 def quarterTime():
     secsNow: int = int(time.strftime("%S"))
-
     return 1000*((math.ceil(secsNow/15)*15)-secsNow)
+#end
+
+def setCopy(root: tk.Tk, r: str):
+    root.clipboard_clear()
+    root.clipboard_append(r)
+#end
+
+def update_sid_route(frame: dict):
+    frame["squawk"].pack_forget()
+    
+    try:
+        frame["fl"].pack_forget()
+    except:
+        pass
+    
+    for key in ("sid", "route"):
+        try:
+            frame[key].destroy()
+        except:
+            pass
 
 #Functions
-def vatsimDataFunc(vatsimDataJson: queue.Queue, airportPilots: queue.Queue, airportModule: loadAirport, reRouteFrame: tk.Frame, updatedTimeLabel: tk.Label, userLocation: tk.StringVar, pilotFrames: list):
-    '''
-    MAIN THREAD  
+def vatsimDataFunc(airportModule: callable, updatedTimeLabel: tk.Label, userLocation: tk.StringVar, pilotFrames: dict):
+    """
+    MAIN LOOP  
     -
     Fetches new VATSIM data every 15 seconds.
-    '''
-
+    """
+    
+    updatedTimeLabel.configure(text=f'Updated: {time.strftime("%H:%M:%S", time.gmtime())}z ({userLocation.get()[2:]} | {runwayInUse.get()})')
+    
     #Get vatsim pilots
-    pilots = requests.get("https://data.vatsim.net/v3/vatsim-data.json").json()['pilots']
-    #with open(resource_path(r"vatsimdata.json"), "r") as file:
-    #    pilots = json.load(file)
+    pilots: dict|None = requests.get("https://data.vatsim.net/v3/vatsim-data.json").json()["pilots"] or None
     
-    airportPilots: list = []
+    if pilots is None: # End if lost internet connection.
+        raise Exception("Could not fetch VATSIM data.")
     
-    #remove any pilots that have left the ATZ or disconnected
+    # Remove any pilots that have left the ATZ or disconnected
+    pilotsInATZ: list = []
+    for pilot in pilots:
+        if geodesic((Airports.DATA[userLocation.get()]["Latt"], Airports.DATA[userLocation.get()]["Long"]), (pilot['latitude'], pilot['longitude'])).nautical <= 2 and pilot["altitude"] <= (Airports.DATA[userLocation.get()]["Elevation"] + 500):
+            pilotsInATZ.append(pilot["callsign"])
     
-    newPilotFrame: list = []
-    for pilotFrame in pilotFrames:
-        keep = False
-        for pilot in pilots:
-            if geodesic((airportModule.DATA["Latt"], airportModule.DATA["Long"]), (pilot['latitude'], pilot['longitude'])).nautical <= 2 and pilot["altitude"] <= (airportModule.DATA["Elevation"] + 1000):
-                if pilotFrame["name"] == pilot["callsign"]:
-                    keep = True
-                    break
-        if keep:
-            newPilotFrame.append(pilotFrame)
-        else:
-            pilotFrame["frame"].destroy()
-            
-    pilotFrames[:] = newPilotFrame
+    oldFrames: list = list(pilotFrames.keys())
     
-    #Main run, checks FPL - Route
+    for callsign in oldFrames:
+        if callsign not in pilotsInATZ:
+            try:
+                pilotFrames[callsign]["frame"].destroy()
+                pilotFrames.pop(callsign)
+            except:
+                pass
+
+    # checks FPL - Route
     if runwayInUse.get() != "":
-        pilotCount = 0
-        pilotError = 0
+        aircraftCounted.set(0)
+        aircraftErrored.set(0)
+        #loop through all pilots
         for pilot in pilots:
-            if geodesic((airportModule.DATA["Latt"], airportModule.DATA["Long"]), (pilot['latitude'], pilot['longitude'])).nautical <= 2 and pilot["altitude"] <= (airportModule.DATA["Elevation"] + 1000):
-                if pilot["flight_plan"]:
-                    if pilot["flight_plan"]["departure"] == userLocation.get():
-                        pilotCount += 1
-                        if pilot["flight_plan"]["flight_rules"] == "I":
-                            pilotRoute: str = pilot["flight_plan"]["route"]
-                            # Remove FL and Coords e.g(F290N5132)
-                            while True:
-                                if pilotRoute.find("/") > -1:
-                                    slashBeginning = pilotRoute.find("/")
-                                    slashEnding = pilotRoute.find(" ", slashBeginning)
-                                    pilotRoute = pilotRoute[:slashBeginning] + pilotRoute[slashEnding:]
-                                else:
-                                    break
-                            
-                            # Remove departure airport
-                            if pilotRoute.find(userLocation.get()) > -1:
-                                pilotRoute =  pilotRoute[:pilotRoute.find(userLocation.get())] + pilotRoute[pilotRoute.find(" ", pilotRoute.find(userLocation.get())):]
+            
+            # If pilot does not have a FPL, skip.
+            if not pilot.get("flight_plan", False):
+                continue
+            
+            # Has pilot departed from user location and still within ATZ?
+            isPilotIFR: bool = pilot["flight_plan"]["flight_rules"] == "I"
+            isPilotATZ: bool = geodesic((Airports.DATA[userLocation.get()]["Latt"], Airports.DATA[userLocation.get()]["Long"]), (pilot['latitude'], pilot['longitude'])).nautical <= 2 and pilot["altitude"] <= (Airports.DATA[userLocation.get()]["Elevation"] + 500)
+            isPilotDepUserLoc: bool = pilot["flight_plan"]["departure"] == userLocation.get()
+            
+            if isPilotIFR and isPilotATZ and isPilotDepUserLoc:
+                aircraftCounted.set(aircraftCounted.get() + 1)
+                
+                # Pilot is IFR departing user location within ATZ - Check FPL
+                sid, route = airportModule.checkFPL(pilot)
+                
+                altitude = utils.checkFLCAPS(pilot=pilot, FLCAPS=airportModule.FLCAPS)
+                if pilot["flight_plan"]["arrival"].find("EG", 0, 1) > -1:
+                    altitude = utils.checkOER(pilot["flight_plan"]["arrival"], int(pilot["flight_plan"]["altitude"]))
+                
+                if pilot["callsign"] in pilotFrames:
+                    frame: dict = pilotFrames[pilot["callsign"]]
+                else:
+                    frame: dict = utils.initPilot(pilot)
+                    pilotFrames[pilot["callsign"]] = frame
 
-                            pilot["flight_plan"]["route"] = pilotRoute
+                if altitude:
+                    frame["fl"].configure(text=altitude, fg="#ffa500")
+                    aircraftErrored.set(aircraftErrored.get() + 1)
+                    errored = True
+                else:
+                    frame["fl"].configure(text="As filed", fg="#00ff00")
+                    errored = False
+
+                if type(route) == type(str()):
+                    # pilot route is invalid but has been corrected
+                    if type(frame["sid"]) == type(tk.Label()) or type(frame["sid"]) == type(None):
+                        # Destroy sid and route Labels
+                        for key in ("sid", "route"):
+                            try:
+                                frame[key].destroy()
+                            except:
+                                pass
                         
-                            result = airportModule.checkRoute(pilot)
-                            if result:
-                                airportPilots.append(result)
-                                pilotError += 1
-                            else:
-                                for pilotFrame in pilotFrames:
-                                    if pilotFrame["name"] == pilot["callsign"]:
-                                        pilotFrame["frame"].destroy()
+                        # Create new sid button and pack it
+                        frame["sid"] = tk.Button(frame["frame"], font=(8), fg="#00ff00", bg="#333333", text=sid, command=lambda:setCopy(root, route))
+                        frame["sid"].grid(column=1, row=0, padx=[5, 5])
+                        
+                        # Create new route button and pack it
+                        frame["route"] = tk.Button(frame["frame"], font=(8), fg="#ffa500", bg="#333333", text="Correction", command=lambda:setCopy(root, f'Can you accept {sid} departure {runwayInUse.get()} with the reroute: {route} then as filed'))
+                        frame["route"].grid(column=2, row=0, padx=[5, 5])
+                        
+                    else:
+                        frame["sid"].configure(text=sid, command=lambda:setCopy(root, route))
+                        frame["route"].configure(text="Correction", command=lambda:setCopy(root, f'Can you accept {sid} departure {runwayInUse.get()} with the reroute: {route} then as filed'))
+                    
+                    if not errored:
+                        aircraftErrored.set(aircraftErrored.get() + 1)
+                else:
+                    if route:
+                        routeText: str = "Unable to correct"
+                        routeColour: str = "#ff0000"
+                        if not errored:
+                            aircraftErrored.set(aircraftErrored.get() + 1)
+                    else:
+                        if sid == "Error":
+                            sidColour: str = "#ff0000"
+                            routeText: str = "Error"
+                            routeColour: str = "#ff0000"
+                            
+                            if not errored:
+                                aircraftErrored.set(aircraftErrored.get() + 1)
                         else:
-                            airportPilots.append({"callsign": pilot["callsign"], "type": "VFR", "colour": "#00ff00"})
-                else:
-                    airportPilots.append({"callsign": pilot["callsign"], "type": "FPL", "colour": "#ff0000"})
-                    pilotError += 1
-                    pilotCount += 1
-
-        
-        aircraftCounted.set(pilotCount)
-        aircraftErrored.set(pilotError)
-
-
-    for pilotReRoute in airportPilots:
-        pilotReRoute: dict
-        callsign: str = pilotReRoute["callsign"]
-        buttoned = False
-        for buttonedCallsign in pilotFrames:
-            if buttonedCallsign["name"] == callsign:
-                buttoned = True
-                buttonedCallsign["labelCall"].configure(fg=pilotReRoute["colour"])
-                if pilotReRoute["type"] == "RR":
-                    try:
-                        buttonedCallsign["labelMsg"].forget()
-                    except:
-                        pass
-                    buttonedCallsign["sid"].configure(text=f'ATC: {pilotReRoute.get("SID")}', command=lambda:clip.copy(pilotReRoute["Route"]))
-                    buttonedCallsign["route"].configure(text="Pilot", command=lambda:clip.copy(f'{pilotReRoute["SID"]} departure. Runway {runwayInUse.get()}. Re-Route: {pilotReRoute["Route"]} Then as filed.'))
-                    buttonedCallsign["sid"].pack(side="left")
-                    buttonedCallsign["route"].pack(side="left")
-                else:
-                    try:
-                        buttonedCallsign["sid"].forget()
-                        buttonedCallsign["route"].forget()
-                    except:
-                        pass
-                    buttonedCallsign["labelMsg"].configure(text="No flight Plan" if pilotReRoute["type"] == "FPL" else "Needs SRD")
-                    buttonedCallsign["labelMsg"].pack(side="left")
-                break
-            
-        if not buttoned:
-            
-            pilotReRoute["name"] = callsign
-            pilotReRoute["Runway"] = runwayInUse.get()
-            pilotReRoute["frame"] = tk.Frame(reRouteFrame, bg="#000000")
-            pilotReRoute["labelCall"] = tk.Label(pilotReRoute["frame"], text=f"{callsign}:", font=(20), fg=pilotReRoute["colour"], bg="#000000")
-            
-            pilotReRoute["frame"].pack(side="top", pady=5)
-            pilotReRoute["labelCall"].pack(side="left")
-            
-            pilotReRoute["sid"] = tk.Button(pilotReRoute["frame"], font=(20), fg="#ffffff", bg="#808080")
-            pilotReRoute["route"] = tk.Button(pilotReRoute["frame"], font=(20), fg="#ffffff", bg="#808080")
-            pilotReRoute["labelMsg"] = tk.Label(pilotReRoute["frame"], font=(20), fg="#ffffff", bg="#808080")
-            
-            if pilotReRoute["type"] == "RR":
-                pilotReRoute["sid"].configure(text=pilotReRoute["SID"], command=lambda:clip.copy(pilotReRoute["Route"]))
-                pilotReRoute["route"].configure(text="Re-Route", command=lambda:clip.copy(f'{pilotReRoute["SID"].replace(" ", "")} departure. Runway {runwayInUse.get()}. Re-Route: {pilotReRoute["Route"]} Then as filed.'))
-                ## ^^ Fix this copy thing as not working properly.
-
-                pilotReRoute["sid"].pack(side="left", padx=5)
-                pilotReRoute["route"].pack(side="left", padx=5)
+                            sidColour: str = "#00ff00"
+                            routeText: str = "As filed"
+                            routeColour: str = "#00ff00"
+                    
+                    if type(frame["sid"]) == type(tk.Button()) or type(frame["sid"]) == type(None):
+                        # Destroy sid and route Buttons
+                        for key in ("sid", "route"):
+                            try:
+                                frame[key].destroy()
+                            except:
+                                pass
+                        
+                        frame["sid"] = tk.Label(frame["frame"], font=(8), fg=sidColour, bg="#000000", text=sid)
+                        frame["sid"].grid(column=1, row=0, padx=[5, 5])
+                        
+                        frame["route"] = tk.Label(frame["frame"], font=(8), fg=routeColour, bg="#000000", text=routeText)
+                        frame["route"].grid(column=2, row=0, padx=[5, 5])
+                    else:
+                        frame["sid"].configure(text=sid)
+                        frame["route"].configure(text=routeText, fg=routeColour)
+                
+                squawkColour: str = "#00ff00" if pilot["flight_plan"]["assigned_transponder"] == pilot["transponder"] else "#ff0000"
+                frame["squawk"].configure(fg=squawkColour, text=pilot["flight_plan"]["assigned_transponder"])
+                
+                #pilotFrames[pilot["callsign"]] = frame
             else:
-                pilotReRoute["labelMsg"] = tk.Label(pilotReRoute["frame"], text="No flight Plan" if pilotReRoute["type"] == "FPL" else "VFR Traffic" if pilotReRoute["type"] == "VFR" else "As Filed" if pilotReRoute["type"] == "AF" else "Needs SRD", font=(20), fg=pilotReRoute["colour"], bg="#000000")
-                pilotReRoute["labelMsg"].pack(side="left")
-            
-            
-            
-            pilotFrames.append(pilotReRoute)
-    
-    updatedTimeLabel.configure(text=f'Updated: {time.strftime("%H:%M:%S", time.gmtime())}z ({userLocation.get()[2:]} | {airportModule.runway.get()})')
+                if pilotFrames.get(pilot["callsign"], False):
+                    frame: dict = pilotFrames[pilot["callsign"]]
+                    
+                    try:
+                        frame["route"].destroy()
+                        frame["route"] = None
+                    except:
+                        frame["route"] = None
 
-    root.after(quarterTime(), func=lambda:vatsimDataFunc(vatsimDataJson, airportPilots, airportModule, reRouteFrame, updatedTimeLabel, userLocation, pilotFrames))
+    root.after(quarterTime(), func=lambda:vatsimDataFunc(airportModule=airportModule, updatedTimeLabel=updatedTimeLabel, userLocation=userLocation, pilotFrames=pilotFrames))
 
-def timeUpdate(localTimeLabel: tk.Label):
+def timeUpdate(localTimeLabel: tk.Label, aircraftErrored: tk.IntVar, aircraftCounted: tk.IntVar):
     localTimeLabel.configure(text=f'Errors {aircraftErrored.get()}/{aircraftCounted.get()} | Current: {time.strftime("%H:%M:%S", time.gmtime())}z')
-    root.after(100, func=lambda:timeUpdate(localTimeLabel))
+    root.after(100, func=lambda:timeUpdate(localTimeLabel=localTimeLabel, aircraftErrored=aircraftErrored, aircraftCounted=aircraftCounted))
+
+controllers: dict | None = requests.get("https://data.vatsim.net/v3/vatsim-data.json").json().get("controllers") or None
+
+if controllers:
+    for c in controllers:
+        if str(c["cid"]) == cidStr.get() and "OBS" not in str(c["callsign"]):
+            userLocation.set(c["callsign"][:4])
+            break
+else:
+    raise Exception("Could not fetch VATSIM data.")
 
 
-
-location = False
-controllers = requests.get("https://data.vatsim.net/v3/vatsim-data.json").json()['controllers']
-for controller in controllers:
-    if str(controller['cid']) == cidStr.get():
-        if str(controller['callsign']).find("OBS") < 0:
-            userLocation.set(controller['callsign'][:4])
-            location = True
-    
-if not location:
+if userLocation.get() == "":
     airportWindow: tk.Toplevel = tk.Toplevel(master=root)
-    airportWindow.attributes("-topmost", True)
     locationVar: tk.StringVar = tk.StringVar()
-
-    locationEntry = tk.Entry(master=airportWindow, width=10, font=(20), fg="#ffffff", bg="#000000", textvariable=userLocation)
+    locationEntry: tk.Entry = tk.Entry(master=airportWindow, width=10, font=(8), fg="#ffffff", bg="#000000", textvariable=userLocation)
     locationEntry.pack()
-
+    
     while not len(userLocation.get()) == 4:
         root.update()
-    
+    #end
     airportWindow.destroy()
     userLocation.set(userLocation.get().upper())
-
-
-airportModule = loadAirport(userLocation, root, runwayInUse, resource_path)
+#end
 
 #Tkinter start buttons
 bottomBanner: tk.Frame = tk.Frame(master=root, bg="#000000")
-bottomBanner.pack(side="bottom", pady=5, fill="x")
+bottomBanner.pack(fill="x", side="bottom", pady=[5, 5])
+bottomBanner.columnconfigure([0, 1, 2], weight=1, uniform="bottomBanner")
 
-updatedTimeLabel: tk.Label = tk.Label(master=bottomBanner, width=25, font=(20), anchor="w", fg="#ffffff", bg="#000000")
-updatedTimeLabel.pack(side="left", padx=10)
+endProgramButton: tk.Button = tk.Button(master=bottomBanner, font=(8), command=lambda:endProgram(), text="End Program", width=15, fg="#ffffff", bg="#808080")
+endProgramButton.grid(row=0, column=1, padx=[5, 5])
 
-bottomBannercenter: tk.Frame = tk.Frame(master=bottomBanner, bg="#000000")
-bottomBannercenter.pack(side="left", expand=True)
+updatedTimeLabel: tk.Label = tk.Label(master=bottomBanner, font=(8), width=25, fg="#ffffff", bg="#000000")
+updatedTimeLabel.grid(row=0, column=0, padx=[5, 5])
 
-endProgramButton: tk.Button = tk.Button(master=bottomBannercenter, command=lambda:endProgram(), text="End Program", width=15, font=(20), fg="#ffffff", bg="#808080")
-endProgramButton.pack()
+localTimeLabel: tk.Label = tk.Label(master=bottomBanner, font=(8), width=25, fg="#ffffff", bg="#000000")
+localTimeLabel.grid(row=0, column=2, padx=[5, 5])
 
-localTimeLabel: tk.Label = tk.Label(master=bottomBanner, width=25, font=(20), anchor="e", fg="#ffffff", bg="#000000")
-localTimeLabel.pack(side="right", padx=10)
+pilotsFrame: tk.Frame = tk.Frame(master=root, bg="#000000")
 
-
-reRouteFrame: tk.Frame = tk.Frame(master=root, bg="#000000")
-reRouteFrame.pack(pady=5, anchor="center")
 root.attributes("-topmost", True)
 
+utils: Airports.utils = Airports.utils(root=root, runway=runwayInUse, userLocation=userLocation, pilotsFrame=pilotsFrame)
+airportModule: callable = getattr(Airports, userLocation.get())(root, runwayInUse, resource_path)
+
+utils.setRunwayButton(airportModule.RUNWAYS)
+
+topBanner: tk.Frame = tk.Frame(master=root, bg="#000000")
+topBanner.pack(fill="x", side="top")
+topBanner.columnconfigure([0, 1, 2, 3, 4,], weight=1, uniform="topBanner")
+
+tk.Label(master=topBanner, text="Callsign", font=(8), fg="#ffffff", bg="#000000").grid(row=0, column=0)
+tk.Label(master=topBanner, text="SID", font=(8), fg="#ffffff", bg="#000000").grid(row=0, column=1)
+tk.Label(master=topBanner, text="Route", font=(8), fg="#ffffff", bg="#000000").grid(row=0, column=2)
+tk.Label(master=topBanner, text="FL", font=(8), fg="#ffffff", bg="#000000").grid(row=0, column=3)
+tk.Label(master=topBanner, text="Squawk", font=(8), fg="#ffffff", bg="#000000").grid(row=0, column=4)
+
+pilotsFrame.pack(fill="both", side="top")
+
 #Start Threads
-timeUpdate(localTimeLabel)
-vatsimDataFunc(vatsimDataJson, airportPilots, airportModule, reRouteFrame, updatedTimeLabel, userLocation, pilotFrames)
+timeUpdate(localTimeLabel, aircraftErrored, aircraftCounted)
+vatsimDataFunc(airportModule, updatedTimeLabel, userLocation, pilotFrames)
 root.mainloop()

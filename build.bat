@@ -4,10 +4,18 @@ setlocal
 set "BAT_DIR=%~dp0"
 set "DIST_DIR=%BAT_DIR%/Vatsim FPL Checker"
 
+if exist "%DIST_DIR%/EGCC.json" (
+    rmdir /S /Q "%DIST_DIR%/EGCC.json"
+)
+
+if exist "%DIST_DIR%/Vatsim FPL Checker.exe" (
+    rmdir /S /Q "%DIST_DIR%/Vatsim FPL Checker.exe"
+)
 
 echo Building with PyInstaller...
-pyinstaller --clean --distpath "%DIST_DIR%" main.spec
+"C:\Users\willb\AppData\Local\Python\pythoncore-3.14-64\Scripts\pyinstaller.exe" --clean --distpath "%DIST_DIR%" main.spec
 
+copy "%BAT_DIR%/EGCC.json" "%DIST_DIR%/EGCC.json"
 
 echo Cleaning up build artifacts...
 if exist "%BAT_DIR%/build" (

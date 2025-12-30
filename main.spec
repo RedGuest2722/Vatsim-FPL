@@ -6,7 +6,8 @@ a = Analysis(
     pathex=['D:/My Stuff/Coding Projects/Vatsim-FPL'],
     binaries=[],
     datas=[
-        ('Airports', 'Airports'),
+        ('Airports.py', 'Airports.py'),
+        ('EGCC.json', 'EGCC.json'),
     ],
     hiddenimports=[],
     hookspath=[],
