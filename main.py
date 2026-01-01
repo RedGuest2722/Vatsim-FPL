@@ -127,8 +127,17 @@ def vatsimDataFunc(airportModule: callable, updatedTimeLabel: tk.Label, userLoca
             
             if isPilotIFR and isPilotATZ and isPilotDepUserLoc:
                 aircraftCounted.set(aircraftCounted.get() + 1)
-                
                 # Pilot is IFR departing user location within ATZ - Check FPL
+                
+                # Clean FPL
+                pilotRoute: str = pilot["flight_plan"]["route"]
+                if userLocation.get() in pilotRoute:
+                    pilotRoute = f'{pilotRoute[:pilotRoute.find(userLocation.get())]}{pilotRoute[pilotRoute.find(" ", pilotRoute.find(userLocation.get()))+1:]}'
+                
+                while "/" in pilotRoute:
+                    pilotRoute = f'{pilotRoute[:pilotRoute.find("/")]} {pilotRoute[pilotRoute.find(" ", pilotRoute.find("/"))+1:]}'
+                pilot["flight_plan"]["route"] = pilotRoute
+                
                 sid, route = airportModule.checkFPL(pilot)
                 
                 altitude = utils.checkFLCAPS(pilot=pilot, FLCAPS=airportModule.FLCAPS)
@@ -151,6 +160,7 @@ def vatsimDataFunc(airportModule: callable, updatedTimeLabel: tk.Label, userLoca
 
                 if type(route) == type(str()):
                     # pilot route is invalid but has been corrected
+                    newRouteText: str = f'Can you accept {sid} departure {runwayInUse.get()} with the reroute: {route} then as filed.'
                     if type(frame["sid"]) == type(tk.Label()) or type(frame["sid"]) == type(None):
                         # Destroy sid and route Labels
                         for key in ("sid", "route"):
@@ -160,27 +170,28 @@ def vatsimDataFunc(airportModule: callable, updatedTimeLabel: tk.Label, userLoca
                                 pass
                         
                         # Create new sid button and pack it
-                        frame["sid"] = tk.Button(frame["frame"], font=(8), fg="#00ff00", bg="#333333", text=sid, command=lambda:setCopy(root, route))
+                        frame["sid"] = tk.Button(frame["frame"], font=(8), fg="#00ff00", bg="#333333", text=sid, command=lambda _s=route: setCopy(root, _s))
                         frame["sid"].grid(column=1, row=0, padx=[5, 5])
                         
                         # Create new route button and pack it
-                        frame["route"] = tk.Button(frame["frame"], font=(8), fg="#ffa500", bg="#333333", text="Correction", command=lambda:setCopy(root, f'Can you accept {sid} departure {runwayInUse.get()} with the reroute: {route} then as filed'))
+                        frame["route"] = tk.Button(frame["frame"], font=(8), fg="#ffa500", bg="#333333", text="Correction", command=lambda _r=newRouteText: setCopy(root, _r))
                         frame["route"].grid(column=2, row=0, padx=[5, 5])
                         
                     else:
-                        frame["sid"].configure(text=sid, command=lambda:setCopy(root, route))
-                        frame["route"].configure(text="Correction", command=lambda:setCopy(root, f'Can you accept {sid} departure {runwayInUse.get()} with the reroute: {route} then as filed'))
-                    
+                        frame["sid"].configure(text=sid, command=lambda _s=route: setCopy(root, _s))
+                        frame["route"].configure(text="Correction", command=lambda _r=newRouteText: setCopy(root, _r))
+
                     if not errored:
                         aircraftErrored.set(aircraftErrored.get() + 1)
                 else:
                     if route:
+                        sidColour: str = "#ffa500"
                         routeText: str = "Unable to correct"
                         routeColour: str = "#ff0000"
                         if not errored:
                             aircraftErrored.set(aircraftErrored.get() + 1)
                     else:
-                        if sid == "Error":
+                        if "Err:" in sid:
                             sidColour: str = "#ff0000"
                             routeText: str = "Error"
                             routeColour: str = "#ff0000"

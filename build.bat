@@ -12,6 +12,10 @@ if exist "%DIST_DIR%/Vatsim FPL Checker.exe" (
     rmdir /S /Q "%DIST_DIR%/Vatsim FPL Checker.exe"
 )
 
+if exist "%DIST_DIR%/Vatsim FPL Checker.zip" (
+    rmdir "%DIST_DIR%/Vatsim FPL Checker.zip"
+)
+
 echo Building with PyInstaller...
 "C:\Users\willb\AppData\Local\Python\pythoncore-3.14-64\Scripts\pyinstaller.exe" --clean --distpath "%DIST_DIR%" main.spec
 
@@ -21,6 +25,8 @@ echo Cleaning up build artifacts...
 if exist "%BAT_DIR%/build" (
     rmdir /S /Q "%BAT_DIR%/build"
 )
+
+powershell -command "Compress-Archive -Path '%DIST_DIR%' -DestinationPath '%DIST_DIR%/Vatsim FPL Checker.zip'"
 
 echo Done.
 pause
